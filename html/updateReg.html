@@ -1,0 +1,127 @@
+<div class="createnewpage pagebg" ng-controller="updateRegController">
+    <div class="container-fluid">
+        <div class="row">
+            <div ng-show="pagemain.main">
+                <div class="sub_menu">
+                    <ul>
+                        <li class="active btn btn-sub-menu"> <a ng-click="pageUsecase()">Use Cases</a></li>
+                        <li class="btn btn-sub-menu"> <a ng-click="pageRule()">Rule</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-show="pagemain.usecase">
+                <div class="sub_menu">
+                    <ul>
+                        <li class="active btn btn-sub-menu"> <a ui-sref="home.createusecase">Create Use Cases</a></li>
+                        <li class="btn btn-sub-menu"> <a ng-click="SamePageReload()" ui-sref="home.updateUsecase">Update Use Cases</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-show="pagemain.rule">
+                <div class="sub_menu">
+                    <ul>
+                        <li class="btn btn-sub-menu"> <a ui-sref="home.createrule">Create Rule</a></li>
+                        <li class="btn btn-sub-menu"> <a ui-sref="home.updateRule">Update Rule</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="createnew-head">
+                <div class="col-md-6 col-sm-6">
+                    <h2 class="title-head"> Update Use Case </h2>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="tabs">
+                <div class="tabheader">
+                    <li class="tabshead"><a herf="" ng-class="liregactive" ng-click="clickReg()"> Regulatory References</a></li>
+                    <!--<li class="tabshead"><a herf="" ng-class="liCapecactive" ng-click="clickCapec()"> Threat Model</a></li>-->
+                </div>
+                <form name="CreateRegFrom" novalidate autocomplete="off">
+                    <div ng-show="tabsusecaseloader.loading" class="tabsreg">
+                        <div class="margintp3 col-md-12">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <label> Reg. Category <span class="red"> *</span></label>
+                                    <select class="form-control" ng-model="UsecaseRegcat" ng-change="UsecaseRegcat_extch()" ng-blur="UsecaseRegcat_ch()" required>
+                                        <option ng-selected="UsecaseRegcat == RegcatCrtdata.SurrId" ng-repeat="RegcatCrtdata in RegcatCrtdatas | orderBy:'Name'" value="{{RegcatCrtdata.SurrId}}">
+                                            {{RegcatCrtdata.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label> Reg. Publication <span class="red"> *</span></label>
+                                    <select class="form-control" ng-model="UsecaseRegPub" ng-change="UsecaseRegPub_extch()" ng-blur="UsecaseRegPub_ch()" required>
+                                        <option ng-selected="UsecaseRegPub == RegpubCrtdata.SurrId" ng-repeat="RegpubCrtdata in RegpubCrtdatas | orderBy:'Name'" value="{{RegpubCrtdata.SurrId}}">
+                                            {{RegpubCrtdata.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label> Reg. Control <span class="red"> *</span></label>
+                                    <select multiple required class="form-control" ng-model="UsecaseRegCrtl" ng-blur="UsecaseRegCrtl_ch()" name="UsecaseRegCrtl" ng-options="RegCrtlCrtdata.SurrId as RegCrtlCrtdata.Name for RegCrtlCrtdata in RegCrtlCrtdatas | orderBy:'Name'"> </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label> </label>
+                                    <button class="tabsbtn btn btn-primary" ng-click="Regcrt_add()"> Add</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Use Case SubCategory</h4>
+                                <div class="panel panel-default">
+                                    <table class="table table-striped tableusecase">
+                                        <thead>
+                                            <th>Reg. Category</th>
+                                            <th>Reg. Publication</th>
+                                            <th>Reg. Control</th>
+                                            <th></th>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="RegCrtl in RegCrtltables">
+                                                <td>{{RegCrtl.Regcat}} </td>
+                                                <td>{{RegCrtl.RegPub}}</td>
+                                                <td>{{RegCrtl.RegCrtl}}</td>
+                                                <td><i class="glyphicon glyphicon-trash mousePt" ng-click="Regtableremove(RegCrtltables, $index)"></i> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="margintp1">
+                            <div class="col-md-3">
+                                <label>Essential Practices </label>
+                                <select multiple class="form-control" ng-options="EPdata.SurrId as EPdata.Name for EPdata in EPdatas | orderBy:'Name'" ng-model="UsecaseEsseprt">
+                                </select>
+                            </div>
+                        </div>
+                        <!--<div class="margintp1 col-md-12">
+                            <div class="col-md-offset-4 col-md-4">
+                                <button class="btn btn-primary tabsbtn" ng-click="clickCapec()"> Next</button>
+                            </div>
+                        </div>-->
+                        <div class="clearfix"></div>
+                        <div class="margintp1 col-md-12">
+                            <div class="col-md-offset-4 col-md-4">
+                                <button class="btn btn-none tabsbtn" ng-click="reSet()" id="reSet"> Clear</button>
+                                <button class="btn btn-primary tabsbtn" type="submit" ng-click="UseCaseformSubmit()"> Submit </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,294 @@
+
+<div class="col-md-9 col-sm-8" ng-controller="usecaseruleController">
+    <!-- search by name/id -->
+    <div class="input-group pull-left col-md-4">
+        <span class="input-group-addon" id="basic-addon1" style="color: #fff; background-color: #05A8E6">Object Name</span> 
+        <input class="form-control namesearchclassrule" ng-model="namesearchrule" placeholder="Object Name" aria-describedby="basic-addon1" type="text" ng-keydown="$event.which === 13 && clickmerule()">
+    </div>
+    <span class="pull-left col-md-2" style="text-align: center">---or---</span>
+    <div class="input-group pull-left col-md-4">
+        <span class="input-group-addon" id="basic-addon1" style="color: #fff; background-color: #05A8E6" ng-model="usecaseID">Object
+			ID</span> 
+        <input class="form-control idsearchclassrule" ng-model="idsearchrule" placeholder="Object ID" aria-describedby="basic-addon1" type="text" ng-keydown="$event.which === 13 && clickmerule()">
+    </div>
+
+    <div>
+        <button type="button" class="btn btn-default pull-right ucsearchresultbutton" ng-click="clickmerule()">Search</button>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <!-- search by name/id -->
+    <div ng-show="errorrelationsearch" class="">
+        <div class="alert alert-danger" role="alert">{{relationsearchbottom}}</div>
+    </div>
+
+    <h4 class="topborder">Result</h4>
+    <div class="panel panel-default tablecontrol">
+    <div>
+             <table class="searchtable">
+             <thead>
+                    <tr class="tableheader">
+                    	 <th>Use Case Category</th>
+                        <th>Use Case Sub Category</th>
+                        <th>Use Case#</th>
+                        <th>Use Case</th>
+                        <th>Use Case Rule #</th>
+                        <th>Use Case Rule</th>
+                        <th>Out of Box</th>
+                        <!-- <th ng-hide="exported">Export<a href="javascript:void(0);" class="exprticon" ng-click="exportFilesRulepg();"></a></th> -->
+                        <th ng-hide="exported">Export<a href="javascript:void(0);" class="exprticon" ng-click="exportFilesRulepg();"></a></th>
+                        <th>Use case Rule Description</th>
+                    </tr>
+           </thead>
+           <tbody>
+                    <tr ng-repeat="usecrule in tabledata" class="usecaseTablerule">
+                        <td>{{usecrule.usecase_category}}</td>
+                        <td>{{usecrule.usecase_subcategory}}</td>
+                        <td>{{usecrule.usecase_id}}</td>
+                        <td><a class="dimensionTableBasic" href="javascript:void(0);" ng-click="uscaserelationclick(usecrule)">{{usecrule.usecase_name}}</a>
+                        </td>
+                        <td>{{usecrule.usecase_rule_id}}</td>
+                        <td class="exportid"><a class="dimensionTableBasic" href="javascript:void(0);" ng-click="uscaseruleclick(usecrule)">
+							{{usecrule.usecase_rule_name}} </a>
+                        </td>
+						<td align="center" class="oobvalue">{{usecrule.oob_flag}}</td>	
+                        <!-- <td ng-hide="exported"><div ng-show="usecrule.exportYes" >
+								<input type="checkbox" class="ruleexport" ng-model="rulepaexpo" ng-click="exportpres($index, usecrule.fileName, usecrule.packageSurrId, rulepaexpo)"/>
+							</div>
+						</td> -->
+                        <td ng-hide="exported"><div ng-show="usecrule.exportYes" >
+                                <input type="checkbox" class="ruleexport" ng-model="rulepaexpo" ng-click="exportpres($index, usecrule.fileName, usecrule.packageSurrId, rulepaexpo)"/>
+                            </div>
+                        </td>
+                        <td>{{usecrule.usecase_rule_desc}}</td>
+                    </tr>
+                    </tbody>
+            </table>
+            <div ng-hide="showResult" align="center" class="nosearchFnaly">{{nosearch}}</div>
+    </div>
+      <!-- <div ng-hide="showResult">
+       <table class="searchtable">
+             <thead>
+                    <tr class="tableheader">
+                    	 <th>Use Case Category</th>
+                        <th>Use Case Sub Category</th>
+                        <th>Use Case#</th>
+                        <th>Use Case</th>
+                        <th>Use Case Rule #</th>
+                        <th>Use Case Rule</th>
+                        <th>Out of Box</th>
+                        <th ng-hide="exported">Export<a href="javascript:void(0);" class="exprticon" ng-click="exportFilesRulepg();"></a></th>
+                        <th>Use case Rule Description</th>
+                    </tr>
+           </thead>
+           <tbody>
+           	<tr align="middle">
+					<td colspan="7">{{nosearch}}</td>
+				</tr>
+           </tbody>
+           </table>
+    </div> -->
+    </div>
+    <div class="uitabs">
+        <tabset>
+            <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">{{tab.content}}</tab>
+        </tabset>
+    </div>
+
+
+    <!-- relationship table -->
+    <div ng-show="rulerelationtable">
+        <h4>
+         <span class="relacategoryBold">Relationships </span><span class="relacategoryN">for </span><span class="relacategoryBold"> Use Case # : </span>
+		 <span class="relacategoryN">{{useCaseNo}} </span><span class="relacategoryBold"> Use Case Name : </span><span class="relacategoryN">{{useCaseName}} </span> 
+        </h4>
+        <div ng-show="">{{relationsearchbottom}}</div>
+        <div class="panel panel-default tablecontrol">
+            <div class="table table-striped relationshiptable">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="tableheaderLeft">Regulatory category:</th>
+                            <td>
+                                <li class="relaList">
+                                    <div id="regcatallin" class="tooltiphov"></div>
+                                </li>
+                            </td>
+                        </tr>
+                       <!--  <tr>
+                            <th class="tableheaderLeft">Threat category:</th>
+                            <td>
+                                <li ng-repeat="tcatagory in threatcategory" class="tcataliststybull"><a data-toggle="tooltip" data-placement="left" title="{{tcatagory.desc}}" tooltip-placement="left" class="tooltiphov"><strong>({{tcatagory.type}})</strong> {{tcatagory.name}}({{tcatagory.id}}) </a>
+                                </li>
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <th class="tableheaderLeft">Essential Practice:</th>
+                            <td>
+                                <li ng-repeat="essenprac in essentialpractice" class="relaList"><a class="tooltiphov" data-toggle="tooltip" data-placement="left" title="{{essenprac.desc}}" tooltip-placement="left">{{essenprac.name}}{{$last ? '' : ', '}}</a>
+                                </li>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="tableheaderLeft">Industry:</th>
+                            <td>
+                                <li ng-repeat="indus in industry" class="relaList"><a class="tooltiphov" data-toggle="tooltip" data-placement="left" title="{{indus.desc}}" tooltip-placement="left">{{indus.name}}{{$last ? '' : ', '}}</a>
+                                </li>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="tableheaderLeft">Use case category:</th>
+                            <td>
+                                <li ng-repeat="uccata in uccategory" class="relaList"><a class="tooltiphov" data-toggle="tooltip" data-placement="left" title="{{uccata.desc}}" tooltip-placement="left">{{uccata.name}}</a>
+                                </li>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="tableheaderLeft">Use case sub category:</th>
+                            <td>
+                                <li ng-repeat="ucsub in ucsubcategory" class="relaList"><a class="tooltiphov" data-toggle="tooltip" data-placement="left" title="{{ucsub.desc}}" tooltip-placement="left">{{ucsub.name}}</a>
+                                </li>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="tableheaderLeft">Use case rule:</th>
+                            <td>
+                                <li ng-repeat="ucrul in ucrules" class="relaList"><a class="tooltiphov" data-toggle="tooltip" data-placement="left" title="{{ucrul.desc}}" tooltip-placement="left">{{ucrul.name}}{{$last ? '' : ', '}}</a>
+                                </li>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /relationship table -->
+    <!-------------bottom tab-------------->
+    <div ng-show="ruletable">
+    <h4>
+    	<span class="relacategoryBold">Rule Details </span><span
+				class="relacategoryN">for </span><span class="relacategoryBold">
+				Rule Id : </span> <span class="relacategoryN">{{ruleNo}} </span><span
+				class="relacategoryBold"> Rule Name : </span><span
+				class="relacategoryN">{{ruleName}} </span>
+				</h4>
+        <div class="uitabs">
+            <div class="uitabsresult">
+                <div class="tabsreg">
+                    <div class="margintp1 col-md-12">
+                        <div class="row">
+                            <div class="tabheader">
+                                <li class="tabshead"><a herf="" ng-class="licreateruledetails" ng-click="lidetails()"> Rule
+									Details</a>
+                                </li>
+                                <li class="tabshead"><a herf="" ng-class="licreateruleinput" ng-click="liinput()"> Log sources</a>
+                                </li>
+                                <li class="tabshead"><a herf="" ng-class="licreateruleinputdata" ng-click="liinputdata()">
+									Input </a>
+                                </li>
+                                <li class="tabshead"><a herf="" ng-class="licreateruleoutput" ng-click="lioutput()"> Output</a>
+                                </li>
+                                <li class="tabshead"><a herf="" ng-class="licreaterulethd" ng-click="lithd()"> Threat Model</a>
+                                </li>
+                              <!--   <li class="tabshead"><a herf="" ng-class="licreateruleresponse" ng-click="liresponse()">
+									Response</a>
+                                </li> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="ruledetails" ng-show="ruledetails">
+                        <div class="panel panel-default tablecontrol">
+                            <table class="table table-striped">
+                                <tr ng-repeat="rule in ruleResultnext">
+                                    <th class="tableheaderLeft">{{rule.Label}}</th>
+                                    <td>{{rule.Value}}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="ruleinput" ng-show="rulesource">
+                        <div class="panel panel-default tablecontrol">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th class="tableheaderLeft">Keyword</th>
+                                    <th class="tableheaderLeft">Description</th>
+                                </tr>
+                                <tr ng-repeat="rule in logSourcenext">
+                                    <td>{{rule.key}}</td>
+                                    <td>{{rule.value}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                    <div class="ruleinput" ng-show="ruleinput">
+                        <div class="panel panel-default tablecontrol">
+
+                            <table class="table table-striped">
+                                <tr ng-repeat="rule in inputDisplay">
+                                    <th class="tableheaderLeft">{{rule.Label}}</th>
+                                    <td>{{rule.Value}}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                    <div class="ruleinput" ng-show="ruleoutput">
+                        <div class="panel panel-default tablecontrol">
+                            <table class="table table-striped">
+                                <tr ng-repeat="rule in outputnext">
+                                    <th class="tableheaderLeft">{{rule.Label}}</th>
+                                    <td>{{rule.Value}}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="rulethd" ng-show="rulethd">
+                        <div class="panel panel-default tablecontrol">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th class="tableheaderLeft">CAPEC Category</th>
+                                    <th class="tableheaderLeft">Meta Attack</th>
+                                    <th class="tableheaderLeft">Standard Attack</th>
+                                </tr>
+                                <tr ng-repeat="tcatagory in thdgrp">
+                                    <td>{{tcatagory.capec.Name}}{{tcatagory.capec.Name ? ' (' : ''}}{{tcatagory.capec.Id}}{{tcatagory.capec.Name ? ')' : ''}}</td>
+                                    <td>{{tcatagory.meta.Name}}{{tcatagory.meta.Name ? ' (' : ''}}{{tcatagory.meta.Id}}{{tcatagory.meta.Name ? ')' : ''}}</td>
+                                    <td>{{tcatagory.standard.Name}}{{tcatagory.standard.Name ? ' (' : ''}}{{tcatagory.standard.Id}}{{tcatagory.standard.Name ? ')' : ''}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="ruleinput" ng-show="ruleresponse">
+                        <div class="clearfix"></div>
+                        <div class="panel panel-default tablecontrol"></div>
+                        <div class="ruleinput" ng-show="ruleresponse">
+                            <div class="panel panel-default tablecontrol">
+                                <table class="table table-striped">
+                                    <tr ng-repeat="rule in responseTextnext">
+                                        <th class="tableheaderLeft">{{rule.Label}}</th>
+                                        </td>
+                                        <td>{{rule.Value}}</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!------------/bottom tab-------------->
+    </div>

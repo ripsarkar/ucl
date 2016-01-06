@@ -1,0 +1,269 @@
+[
+    {
+        "Type": "Select all",
+        "SurrId": 1,
+        "Name": "Selectall",
+        "checked": false,
+        "show": true,
+        "children": [
+            {
+                "Type": "CyberSecFunc",
+                "SurrId": 1,
+                "Name": "Identify",
+                "checked": false,
+                "show": true,
+                "children": [
+                    {
+                        "Type": "UseCaseCat",
+                        "SurrId": 3,
+                        "Name": "AnomaliesandEvents(AE)",
+                        "checked": false,
+                        "show": true,
+                        "children": []
+                    },
+                    {
+                        "Type": "UseCaseCat",
+                        "SurrId": 4,
+                        "Name": "DataSecurity(DS)",
+                        "checked": false,
+                        "show": true,
+                        "children": [
+                            {
+                                "Type": "UseCaseSubCat",
+                                "SurrId": 1,
+                                "Name": "IdentityandCredentialManagement",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            },
+                            {
+                                "Type": "UseCaseSubCat",
+                                "SurrId": 3,
+                                "Name": "NetworkMonitoring",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Type": "CyberSecFunc",
+                "SurrId": 2,
+                "Name": "Protect",
+                "checked": false,
+                "show": true,
+                "children": [
+                    {
+                        "Type": "UseCaseCat",
+                        "SurrId": 1,
+                        "Name": "PrivilegedRoleViolations",
+                        "checked": false,
+                        "show": true,
+                        "children": []
+                    },
+                    {
+                        "Type": "UseCaseCat",
+                        "SurrId": 2,
+                        "Name": "SecurityContinuousMonitoring(CM)",
+                        "checked": false,
+                        "show": true,
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "Type": "CyberSecFunc",
+                "SurrId": 3,
+                "Name": "Detect",
+                "checked": false,
+                "show": true,
+                "children": [
+                    {
+                        "Type": "UseCaseCat",
+                        "SurrId": 5,
+                        "Name": "ProtectiveTechnology(PT)",
+                        "checked": false,
+                        "show": true,
+                        "children": [
+                            {
+                                "Type": "UseCaseSubCat",
+                                "SurrId": 4,
+                                "Name": "DetectMaliciousCode",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "Type": "UseCaseCat",
+                        "SurrId": 6,
+                        "Name": "RiskAssessment(RA)",
+                        "children": [
+                            {
+                                "Type": "UseCaseSubCat",
+                                "SurrId": 2,
+                                "Name": "ManageRemoteAccess",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Type": "RegCat",
+                "SurrId": 1,
+                "Name": "option1",
+                "checked": false,
+                "show": true,
+                "children": [
+                    {
+                        "Type": "RegPub",
+                        "SurrId": 1,
+                        "Name": "NISTSP800-53Rev4",
+                        "checked": false,
+                        "show": true,
+                        "children": [
+                            {
+                                "Type": "RegCntl",
+                                "SurrId": 1,
+                                "Name": "AC-2",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            },
+                            {
+                                "Type": "RegCntl",
+                                "SurrId": 2,
+                                "Name": "AC-5",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "Type": "RegPub",
+                        "SurrId": 3,
+                        "Name": "COBIT5",
+                        "checked": false,
+                        "show": true,
+                        "children": [
+                            {
+                                "Type": "RegCntl",
+                                "SurrId": 1,
+                                "Name": "AC-2",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            },
+                            {
+                                "Type": "RegCntl",
+                                "SurrId": 3,
+                                "Name": "AC-6",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Type": "RegCat",
+                "SurrId": 2,
+                "Name": "option2",
+                "checked": false,
+                "show": true,
+                "children": [
+                    {
+                        "Type": "RegPub",
+                        "SurrId": 2,
+                        "Name": "ISO/IEC27001",
+                        "checked": false,
+                        "show": true,
+                        "children": [
+                            {
+                                "Type": "RegCntl",
+                                "SurrId": 1,
+                                "Name": "AC-2",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            },
+                            {
+                                "Type": "RegCntl",
+                                "SurrId": 2,
+                                "Name": "AC-5",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "Type": "RegPub",
+                        "SurrId": 4,
+                        "Name": "ISO/IEC27001: 2013",
+                        "checked": false,
+                        "show": true,
+                        "children": [
+                            {
+                                "Type": "RegCntl",
+                                "SurrId": 1,
+                                "Name": "AC-2",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            },
+                            {
+                                "Type": "RegCntl",
+                                "SurrId": 2,
+                                "Name": "AC-5",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            },
+                            {
+                                "Type": "RegCntl",
+                                "SurrId": 4,
+                                "Name": "IA-1",
+                                "checked": false,
+                                "show": true,
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Type": "RegCat",
+                "SurrId": 3,
+                "Name": "option3",
+                "checked": false,
+                "show": true,
+                "children": []
+            },
+            {
+                "Type": "RegCat",
+                "SurrId": 4,
+                "Name": "NIST",
+                "checked": false,
+                "show": true,
+                "children": []
+            },
+            {
+                "Type": "RegCat",
+                "SurrId": 5,
+                "Name": "ISO/IEC",
+                "checked": false,
+                "show": true,
+                "children": []
+            }
+        ]
+    }
+]

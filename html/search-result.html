@@ -1,0 +1,336 @@
+<div class="topmarginreduce col-md-9 col-sm-8">
+<h4 class="accord1Heading"></h4>
+<div class="clear-fix"></div>
+<div class="accord accord1 searchcriteria"><ul><li ng-repeat="item in items">{{item.names}}<!-- -{{item.ids}} --></li></ul></div>
+<div class="clear-fix"></div>
+<h4 class="result">Result <span class="pull-right rulecountdisp">Rule Count : {{ruleLength}}</span></h4>
+<div class="clear-fix"></div>
+<div class="accord accord2">
+	<div class="pull-left col-md-12">
+		<!-- <h4 class="pull-left">Result</h4> -->
+		<!-- <a href="javascript:void(0);" ng-show="showAllmode" data-toggle="modal" data-target="#myModal" class="pull-right showallstyle">Show Entire Library</a> -->
+	</div>
+	<div class="clear-fix"></div>
+	<div class="panel panel-default tablecontrol">
+		<div>
+			<table class="searchtable" id="rateplanmapping-scroll">
+				<thead>
+					<tr>
+						<th>Use Case Category</th>
+						<th>Use Case Sub Category</th>
+						<th>Use Case#</th>
+						<th>Use Case</th>
+						<th>Use Case Rule #</th>
+						<th>Use Case Rule</th>
+						<th>Out of Box</th>
+						<!-- <th ng-hide="exported">Export<a href="javascript:void(0);"
+							class="exprticon" ng-click="exportFiles();"></th> -->
+						<th ng-hide="exported">Export<a href="javascript:void(0);"
+							class="exprticon" ng-click="exportFiles();"></th>
+						<th>Use Case Rule Description</th>
+					</tr>
+				</thead>
+
+				<tbody class="searchtabBody">
+				<tr ng-repeat="result in tabledata" class="usecaseTable">
+						<td ng-model="datashown">{{result.Category}}</td>
+						<td>{{result.SubCategory}}</td>
+						<td>{{result.IdLabel}}</td>
+						<td><a class="dimensionTableBasic" href="javascript:void(0);"
+							ng-click='dimensionRelationship(result)'>{{result.UseCase}}</a></td>
+						<td>{{result.RuleIdValue}}</a>
+						</td>
+						<td><a class="dimensionTableBasic" href="javascript:void(0);"
+							ng-click="getResult(result)"> {{result.Rule}}</a></td>
+						<td align="center" class="oobvalue">{{result.oob_flag}}</td>
+						<td align="left" ng-hide="exported">
+							<div ng-show="result.exportYes">
+								<input id="{{result.packageSurrId}}" type="checkbox"
+									value="{{result.packageSurrId}}"
+									ng-checked="selection.indexOf(result.packageSurrId) > -1"
+									ng-click="toggleSelection(result)" />
+							</div>
+						</td>
+						<!-- <td align="center" ng-hide="exported">
+							<div ng-show="result.exportYes">
+								<input id="{{result.packageSurrId}}" type="checkbox"
+									value="{{result.packageSurrId}}"
+									ng-checked="selection.indexOf(result.packageSurrId) > -1"
+									ng-click="toggleSelection(result)" />
+							</div>
+						</td> -->
+						<td>
+						 <p read-more content="{{result.RuleDescription}}" ></p> 
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		<div  ng-hide="showResult" align="center" class="nosearchFnaly">{{userMsg}}</div>
+</div>
+		<!-- <div ng-hide="showResult">
+			<table class="searchtable">
+				<thead>
+					<tr>
+						<th>Use Case Category</th>
+						<th>Use Case Sub Category</th>
+						<th>Use Case#</th>
+						<th>Use Case</th>
+						<th>Use Case Rule #</th>
+						<th>Use Case Rule</th>
+						<th>Out of Box</th>
+						<th ng-hide="exported">Export<a href="javascript:void(0);"
+							class="exprticon" ng-click="exportFiles();"></th>
+						<th>Use Case Rule Description</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr align="middle">
+					<td colspan="7">{{userMsg}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div> -->
+
+
+	</div>
+
+	<div class="uitabs" ng-show="dimensionrule">
+	<h4>
+			<span class="relacategoryBold">Rule Details </span><span
+				class="relacategoryN">for </span><span class="relacategoryBold">
+				Rule Id : </span> <span class="relacategoryN">{{ruleNo}} </span><span
+				class="relacategoryBold"> Rule Name : </span><span
+				class="relacategoryN">{{ruleName}} </span>
+		</h4>
+		<div class="uitabsresult">
+			<div class="tabsreg">
+				<div class="margintp1 col-md-12">
+					<div class="row">
+						<div class="tabheader">
+							<li class="tabshead"><a herf=""
+								ng-class="licreateruledetails" ng-click="lidetails()"> Rule
+									Details</a></li>
+							<li class="tabshead"><a herf="" ng-class="licreateruleinput"
+								ng-click="liinput()"> Log sources</a></li>
+							<li class="tabshead"><a herf=""
+								ng-class="licreateruleinputdata" ng-click="liinputdata()">Input
+							</a></li>
+							<li class="tabshead"><a herf=""
+								ng-class="licreateruleoutput" ng-click="lioutput()"> Output</a>
+							</li>
+							<li class="tabshead"><a herf="" ng-class="licreaterulethd"
+								ng-click="lithd()"> Threat Model</a></li>
+							<!--   <li class="tabshead"><a herf="" ng-class="licreateruleresponse" ng-click="liresponse()">Response</a>
+                            </li> -->
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="ruledetails" ng-show="ruledetails">
+					<div class="panel panel-default tablecontrol">
+
+						<table class="table table-striped">
+							<tr ng-repeat="rule in ruleResult">
+								<th class="tableheaderLeft">{{rule.Label}}</th>
+								</td>
+								<td>{{rule.Value}}</td>
+							</tr>
+
+						</table>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="ruleinput" ng-show="rulesource">
+					<div class="panel panel-default tablecontrol">
+
+						<table class="table table-striped">
+							<tr>
+								<th class="tableheaderLeft">Keyword</th>
+								<th class="tableheaderLeft">Description</th>
+							</tr>
+							<tr ng-repeat="rule in logSource">
+								<td>{{rule.key}}
+								</th>
+								<td>{{rule.value}}</td>
+							</tr>
+						</table>
+					</div>
+					<div class="clearfix"></div>
+
+				</div>
+				<div class="ruleinput" ng-show="ruleinput">
+					<div class="panel panel-default tablecontrol">
+
+						<table class="table table-striped">
+							<tr ng-repeat="rule in inputDisplaydata track by $index">
+								<th class="tableheaderLeft">{{rule.Label}}</th>
+								</td>
+								<td>{{rule.Value}}</td>
+							</tr>
+
+							<!-- 	<tr ng-repeat="event in events">
+								<th class="tableheaderLeft">Event Attributes</th>
+								</td>
+								<td>{{event.key}}-{{event.value}}</td>
+							</tr> -->
+
+						</table>
+					</div>
+					<div class="clearfix"></div>
+
+				</div>
+				<div class="ruleinput" ng-show="ruleoutput">
+					<div class="panel panel-default tablecontrol">
+						<table class="table table-striped">
+							<tr ng-repeat="rule in output">
+								<th class="tableheaderLeft">{{rule.Label}}</th>
+								</td>
+								<td>{{rule.Value}}</td>
+							</tr>
+						</table>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="rulethd" ng-show="rulethd">
+					<div class="panel panel-default tablecontrol">
+						<table class="table table-striped">
+							<tr>
+								<th class="tableheaderLeft">CAPEC Category</th>
+								<th class="tableheaderLeft">Meta Attack</th>
+								<th class="tableheaderLeft">Standard Attack</th>
+							</tr>
+							<tr ng-repeat="tcatagory in thdgrp">
+								<td>{{tcatagory.capec.Name}}{{tcatagory.capec.Name ? ' (' :
+									''}}{{tcatagory.capec.Id}}{{tcatagory.capec.Name ? ')' : ''}}</td>
+								<td>{{tcatagory.meta.Name}}{{tcatagory.meta.Name ? ' (' :
+									''}}{{tcatagory.meta.Id}}{{tcatagory.meta.Name ? ')' : ''}}</td>
+								<td>{{tcatagory.standard.Name}}{{tcatagory.standard.Name ?
+									' (' : ''}}{{tcatagory.standard.Id}}{{tcatagory.standard.Name ?
+									')' : ''}}</td>
+							</tr>
+						</table>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<!--          <div class="ruleinput" ng-show="ruleresponse">
+                    <div class="panel panel-default tablecontrol">
+                        <table class="table table-striped">
+                            <tr ng-repeat="rule in responseText">
+                                <th class="tableheaderLeft">{{rule.Label}}</th>
+                                </td>
+                                <td>{{rule.Value}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                </div> -->
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- relationship table -->
+	<div ng-show="dimensionrelationtable">
+		<h4>
+			<span class="relacategoryBold">Relationships </span><span
+				class="relacategoryN">for </span><span class="relacategoryBold">
+				Use Case # : </span> <span class="relacategoryN">{{useCaseNo}} </span><span
+				class="relacategoryBold"> Use Case Name : </span><span
+				class="relacategoryN">{{useCaseName}} </span>
+		</h4>
+		<div class="panel panel-default tablecontrol">
+			<div class="table table-striped relationshiptable">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th class="tableheaderLeft">Regulatory category:</th>
+							<td>
+								<li class="relaList">
+									<div id="regcatallinucresult" class="tooltiphov"></div>
+							</li> <!--  <td><li ng-repeat="rcata in dimensionregulatorycatagory" class="relaList"><a data-toggle="tooltip" data-placement="left" title="{{rcata.desc}}" tooltip-placement="left">{{rcata.name}},</a> -->
+							</td>
+
+						</tr>
+						<!--<tr>
+					          <th class="tableheaderLeft">Threat category:</th>
+					            <td><li ng-repeat="tcatagory in dimensionthreatcategory" class="relaList"><a data-toggle="tooltip" data-placement="left" title="{{tcatagory.desc}}" tooltip-placement="left">{{tcatagory.name}}({{tcatagory.id}}),</a>
+                            </li></td>
+					        </tr>-->
+						<tr>
+							<th class="tableheaderLeft">Essential Practice:</th>
+							<td>
+								<li ng-repeat="essenprac in dimensionessentialpractice"
+								class="relaList"><a class="tooltiphov"
+									data-toggle="tooltip" data-placement="left"
+									title="{{essenprac.desc}}" tooltip-placement="left">{{essenprac.name}}{{$last
+										? '' : ', '}}</a></li>
+							</td>
+						</tr>
+						<tr>
+							<th class="tableheaderLeft">Industry:</th>
+							<td>
+								<li ng-repeat="indus in dimensionindustry" class="relaList"><a
+									class="tooltiphov" data-toggle="tooltip" data-placement="left"
+									title="{{indus.desc}}" tooltip-placement="left">{{indus.name}}{{$last
+										? '' : ', '}}</a></li>
+							</td>
+						</tr>
+						<tr>
+							<th class="tableheaderLeft">Use Case Category:</th>
+							<td>
+								<li ng-repeat="uccata in dimensionuccategory" class="relaList"><a
+									class="tooltiphov" data-toggle="tooltip" data-placement="left"
+									title="{{uccata.desc}}" tooltip-placement="left">{{uccata.name}}</a>
+							</li>
+							</td>
+						</tr>
+						<tr>
+							<th class="tableheaderLeft">Use Case Sub Category:</th>
+							<td>
+								<li ng-repeat="ucsub in dimensionucsubcategory" class="relaList"><a
+									class="tooltiphov" data-toggle="tooltip" data-placement="left"
+									title="{{ucsub.desc}}" tooltip-placement="left">{{ucsub.name}}</a>
+							</li>
+							</td>
+						</tr>
+						<tr>
+							<th class="tableheaderLeft">Use Case Rule:</th>
+							<td>
+								<li ng-repeat="ucrul in dimensionucrules" class="relaList"><a
+									class="tooltiphov" data-toggle="tooltip" data-placement="left"
+									title="{{ucrul.desc}}" tooltip-placement="left">{{ucrul.name}}{{$last
+										? '' : ', '}}</a></li>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- /relationship table -->
+</div>
+</div>
+<!-- Modal -->
+<!--  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        Modal content
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Show All</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure , you want to fetch full list of Use Case library ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="showAll();">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+
+    </div>
+</div>  -->

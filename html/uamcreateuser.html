@@ -1,0 +1,115 @@
+<div class="createnewpage pagebg" ng-controller="createUserController">
+    <div class="container-fluid">
+
+    </div>
+    <div class='container-fluid'>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="createnew-head">
+                    <div class="col-md-6 col-sm-6">
+                        <h2 class="title-head"> {{titleforuser}} </h2>
+                    </div>
+                </div>
+            </div>                
+            <hr>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="tabs">
+                    <div class="tabsreg">
+                        <div class="margintp1 col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4 col-sm-6">
+                                        <label> User name<span style="color:red">*</span> </label>
+                                        <input type="text" maxlength="50" class="form-control" placeholder="Username" ng-model="usernamemain" ng-disabled="disableusername">
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 hide">
+                                        <label> Password<span style="color:red">*</span> </label>
+                                        <input type="password" class="form-control" placeholder="Password" ng-model="password">
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <label> Make this User Active/ In-active </label>
+                                        <div class="col-md-11 checkboxstyle">
+                                            <input type="checkbox" name="checkbox1" id="checkboxActivate" ng-model="isactive" ng-checked="master" class="ios-toggle"  checked/>
+                                            <label for="checkbox1" class="checkbox-label" data-off="off" data-on="on"></label>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <hr>
+                                    <div class="col-md-4 col-sm-6">
+                                        <label> First Name<span style="color:red">*</span> </label>
+                                        <input type="text" maxlength="40" class="form-control" placeholder="First Name" ng-model="firstname">
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <label> Middle Name </label>
+                                        <input type="text" maxlength="40" class="form-control" placeholder="Middle Name" ng-model="middlename">
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <label> Last Name<span style="color:red">*</span></label>
+                                        <input type="text" maxlength="40" class="form-control" placeholder="Last Name" ng-model="lastname">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <hr>
+                                    <div class="col-md-4 col-sm-6">
+                                        <label> Contact Number<span style="color:red">*</span> </label>
+                                        <input type="text" maxlength="40" class="form-control" placeholder="Contact Number" ng-model="contactnum">
+                                    </div>
+                                    <div class="col-md-8 col-sm-6">
+                                        <label> Email Address<span style="color:red">*</span> </label>
+                                        <input type="text" maxlength="40" class="form-control" placeholder="ibm@ibm.com" ng-model="emailadd">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <hr>
+
+                                    <div class="col-md-4 col-sm-6">
+                                    <label>Organization Name<span style="color:red">*</span></label> 
+ 						<!-- <select class="form-control" ng-model="selectedCompanycr" ng-options="company.name for company in companyListli  track by company.id "
+							 ng-change=getDetailscr()>
+ 							<option style="display: none" value="">--Please Select--</option>
+						</select> -->
+						<select class="form-control valselect" ng-model="selectedCompanycr" ng-change=getDetailscr()>
+							<option ng-repeat="companycr in companyListli| orderBy : 'name'">{{companycr.name}}</option>
+						</select>
+
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                    <label> Industry</label>
+									<p>{{industryName}}</p>
+									<!-- <input ng-model="industryName">Hospitality -->
+
+                                    </div>
+                                        <div class="col-md-4 col-sm-6">
+                                        <label> Contract ID </label> 
+										<p>{{contractId}}</p>
+										<!-- <input ng-model="contractId">CONTRACT-1 -->
+                                        </div>
+                                    <div class="clearfix"></div>
+                                    <div class="margintp2">
+
+                                        <div class="col-md-4 col-sm-6">
+                                            <label> Role<span style="color:red">*</span> </label>
+                                            <select class="form-control" ng-model="role">
+                                                <option ng-repeat="rolemain in rolelist| orderBy : 'user_role_name'">{{rolemain.user_role_name}}</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="margintp3  col-md-12 text-center">
+                            <div class="col-md-offset-4 col-md-4 ">
+                                <button class="btn btn-none" style="padding: 6px 30px;" ng-click="clearadduser()"> Clear</button>
+                                <button class="btn btn-primary" style="padding: 6px 30px;" ng-click="sendcreateuser()"> Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

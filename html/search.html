@@ -1,0 +1,215 @@
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="pagemain-head">
+			<!-- <h4 class="title-head">Search</h4>-->
+			<hr></hr> 
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="search-page">
+			<div class="col-md-3 col-sm-4 treewidthpan">
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default panelheadinstyle">
+						<div class="panel-heading panelstyle">
+						<strong>Use Case Dimension Filters</strong>
+						<!-- 	<h4 class="panel-title dimensionClass">
+							
+							
+							</h4> -->
+							</div>
+							<div class="panelbottomborder">
+							<strong>Use Case/Rule ID/Name</strong>
+							<input type="text" class="inputforall" ng-model="seaValForEvery" type="text"
+								ng-keydown="$event.which === 13 && ClikedResult()">
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="panel-body">
+
+								
+								<!-- new tree -->
+					<div class="tree well parenttreenone">
+    <ul>
+        <li>
+          <input type="checkbox" ng-click="caAll()" class="allclass">Select All<div class="collapall glyphicon glyphicon-resize-small forclearhover" style="float:right;padding:0px 6px"></div><div class="alltreeclear" ng-click="clear()" style="float:right;padding:0px 6px">clear</div>
+            <!-- cybersec -->
+            <ul>
+                <li>
+                	<input type="checkbox" ng-click="entervalueSubcatCyberSecFuncTop($event)" >Cyber Security<span class="start"><i class="icon-minus-sign headPlus">+</i></span>
+                    <ul>
+                        <li ng-repeat="cybers in cybersec">
+                        	<input type="checkbox"  ng-click="entervalueSubcatCyberSecFunc($event,cybers.SurrId,cybers.Name)" value="{{cybers.SurrId}}"><div style="display:inline">{{cybers.Name}}</div><span><i class="icon-minus-sign">+</i></span>
+                            <ul>
+                                <li>
+	                                <input type="checkbox" value="UseCaseCat" ng-click="UsecaseCategory($event)">Use Case Category<span><i class="icon-minus-sign">+</i></span>
+		                            <ul class="findchild">
+		                                <li ng-repeat="useca in cybers.UseCaseCat">
+			                                <input type="checkbox"  ng-click="entervalue($event,useca.SurrId,useca.Name)" value="{{useca.SurrId}}"><pre class="uccatagory"></pre><div style="display:inline">{{useca.Name}}</div><span><i class="icon-leaf">+</i></span>
+					                         <ul>
+				                                <li>
+					                                <input type="checkbox"  ng-click="UsecaseSubCategory($event)" value="UseCaseSubCat">Use Case SubCategory<span><i class="icon-leaf">+</i></span>
+							                         <ul>
+						                                <li ng-repeat="usecasesu in useca.UseCaseSubCat">
+							                               <input type="checkbox"  ng-click="entervalueSubcat($event,usecasesu.SurrId,usecasesu.Name)" value="{{usecasesu.SurrId}}"><pre class="ucSubcatagory"></pre><div style="display:inline">{{usecasesu.Name}}</div>
+						                                </li>
+						                             </ul>                                
+						                        </li>
+				                             </ul>
+		                                </li>
+		                             </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /cybersec -->
+            <!-- regcat-->
+            <ul>
+                <li>
+                	<input type="checkbox" ng-click="entervalueSubcatRegCatTop($event)">Regulatory Category<span class="start"><i class="icon-minus-sign headPlus">+</i></span>
+                    <ul>
+                        <li ng-repeat="regcat in regulacat">
+                        	<input type="checkbox"  ng-click="entervalueSubcatRegCat($event,regcat.SurrId,regcat.Name)" value="{{regcat.SurrId}}"><div style="display:inline">{{regcat.Name}}</div><span><i class="icon-minus-sign">+</i></span>
+                            <ul>
+                                <li>
+	                                <input type="checkbox" ng-click="RegCategor($event)">Regulatory Publication<span><i class="icon-minus-sign">+</i></span>
+		                            <ul>
+		                                <li ng-repeat="regpub in regcat.RegPub">
+			                                <input type="checkbox"  ng-click="entervalue2($event,regpub.SurrId,regpub.Name)" value="{{regpub.SurrId}}"><pre class="regcatagory"></pre><div style="display:inline">{{regpub.Name}}</div><span><i class="icon-leaf">+</i></span>
+					                         <ul>
+				                                <li>
+					                                <input type="checkbox" ng-click="RegCatSubCategory($event)">Regulatory Control</a><span><i class="icon-leaf">+</i></span>
+							                         <ul>
+						                                <li ng-repeat="regctrl in regpub.RegCntl">
+							                                <input type="checkbox"  ng-click="entervalueSubcat2($event,regctrl.SurrId,regctrl.Name)" value="{{regctrl.SurrId}}"><pre class="regSubcatagory"></pre><div style="display:inline">{{regctrl.Name}}</div>
+						                                </li>
+						                             </ul>				                                
+						                        </li>
+				                             </ul>
+		                                </li>
+		                             </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /regcat -->
+            <!-- Industry-->
+            <ul>
+                <li>
+                	<input type="checkbox"  ng-click="entervalueSubcatIndustryTop($event)">Industry<span class="start"><i class="icon-minus-sign headPlus">+</i></span>
+                    <ul>
+                        <li ng-repeat="indus in industry">
+                        	<input type="checkbox" ng-click="entervalueSubcatIndustry($event,indus.SurrId,indus.Name)" value="{{indus.SurrId}}"><div style="display:inline">{{indus.Name}}</div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /Industry -->
+            <!-- EP-->
+            <ul>
+                <li>
+                	<input type="checkbox" ng-click="entervalueSubcatEPTop($event)">IBM 10 Essential Practices<span class="start"><i class="icon-minus-sign headPlus">+</i></span>
+                    <ul>
+                        <li ng-repeat="ep in eepp">
+                        	<input type="checkbox" ng-click="entervalueSubcatEP($event,ep.SurrId,ep.Name)" value="{{ep.SurrId}}"><div style="display:inline">{{ep.Name}}</div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /EP -->
+            <!-- Threat Model-->
+            <ul>
+                <li>
+                	<input type="checkbox"  ng-click="cliThreModTop($event)">Threat Model<span class="start"><i class="icon-minus-sign headPlus">+</i></span>
+                    <ul>
+                        <li ng-repeat="thrt1 in thrtmodl">
+                        	<input type="checkbox" ng-click="cliThreModMid($event,thrt1.SurrId,thrt1.Name)"><pre class="uccatagory"></pre><div style="display:inline">{{thrt1.Name}}</div>-<strong>{{thrt1.SurrId}}</strong><span><i class="icon-minus-sign">+</i></span>
+                            <ul>
+		                       <li ng-repeat="thrt2 in thrt1.children">
+			                      <input type="checkbox" ng-click="cliThreMod($event,thrt2.SurrId,thrt2.Name)"><pre class="threatScatagoryM" ng-if="thrt2.ThreadModelType=='M'"></pre><pre class="threatScatagoryS" ng-if="thrt2.ThreadModelType=='S'"></pre><div style="display:inline">{{thrt2.Name}}</div>-<strong>{{thrt2.SurrId}}</strong><span><i class="icon-minus-sign">+</i></span>
+			                      <ul>
+				                       <li ng-repeat="thrt3 in thrt2.children">
+					                      <input type="checkbox" ng-click="cliThreModInner($event,thrt3.SurrId,thrt3.Name)"  value="{{thrt3.SurrId}}"><pre class="threatScatagoryM" ng-if="thrt3.ThreadModelType=='M'"></pre><pre class="threatScatagoryS" ng-if="thrt3.ThreadModelType=='S'"></pre><div style="display:inline">{{thrt3.Name}}</div>-<strong>{{thrt3.SurrId}}</strong>
+				                       </li>
+		                          </ul>
+		                       </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /Threat Model -->
+            <!-- Logsource-->
+            <ul>
+                <li>
+                	<input type="checkbox" ng-click="entervalueSubcatLogSourceTop($event)">LogSource<span class="start"><i class="icon-minus-sign headPlus">+</i></span>
+                    <ul>
+                        <li ng-repeat="log in logsour">
+                        	<input type="checkbox" ng-click="entervalueSubcatLogSource($event,log.SurrId,log.Name)" value="{{log.SurrId}}"><div style="display:inline">{{log.Name}}</div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /Logsource -->
+        </li>
+    </ul>
+</div>
+								<!-- /new tree -->
+				</div>
+				<div class="chkboxarea">
+					<!-- code for library customview -->
+					<input type="checkbox" name="oobv" class="outOBYes" checked ="checked" value="Yes" ng-click="oobvaluegoes($event)"> Out of Box Rules
+					<br>
+					<input type="checkbox" name="oobv" class="outOBNo" checked ="checked" value="No" ng-click="oobvaluegoes($event)"> Custom Rules
+					<!-- /code for library customview -->								
+								
+				</div>				
+		
+								
+						
+						</div>
+					</div>
+								
+				</div>
+					<button class="result-search btn pull-right" ng-click="ClikedResult()">Refresh Result</button>
+			</div>
+			<div ng-include="currentTab"></div>
+		</div>
+	</div>
+</div>
+
+
+ <div class="modal fade" id="myModal" role="dialog" visible="showModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Show All</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{modalMsg}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="callService();">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+
+    </div>
+</div>  
+
+  <script>
+     angular.element("ul.sidemenu-nav li a").click(function(){
+ 	 angular.element("ul.sidemenu-nav li a").removeClass("activesidenav");
+ 	 angular.element(this).addClass("activesidenav");
+	 });
+     angular.element(".treelevel li a").click(function(){
+    	 angular.element(".treelevel li").removeClass("usectree");
+    	 angular.element(this).parent().addClass(" usectree");
+   	 });
+  </script>

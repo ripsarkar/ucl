@@ -1,0 +1,342 @@
+<div class="createnewpage pagebg" ng-controller="CreateRuleController">
+    <div class="container-fluid">
+        <div class="row">
+            <div ng-show="pagemain.main">
+                <div class="sub_menu">
+                    <ul>
+                        <li class="active btn btn-sub-menu"> <a ng-click="pageUsecase()">Use Cases</a></li>
+                        <li class="btn btn-sub-menu"> <a ng-click="pageRule()">Rule</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-show="pagemain.usecase">
+                <div class="sub_menu">
+                    <ul>
+                        <li class="active btn btn-sub-menu"> <a ui-sref="home.createusecase">Create Use Cases</a></li>
+                        <li class="btn btn-sub-menu"> <a ui-sref="home.updateUsecase">Update Use Cases</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-show="pagemain.rule">
+                <div class="sub_menu">
+                    <ul>
+                        <li class="btn btn-sub-menu"> <a ui-sref="home.createrule">Create Rule</a></li>
+                        <li class="btn btn-sub-menu"> <a ui-sref="home.updateRule">Update Rule</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="createnew-head">
+                <div class="col-md-6 col-sm-6">
+                    <h2 class="title-head"> Create New Rule </h2>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="container">
+        <form name="CreateRuleFrom" novalidate autocomplete="off" role="form" enctype="multipart/form-data">
+            <div class="row">
+                <div class="tabs">
+                    <div class="tabsreg col-md-12 pull-center">
+                        <div class="margintp1 col-md-12 col-sm-12 ">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <label> Search by Use Case ID</label>
+                                    <input type="text" class="form-control" placeholder="Search by ID" ng-change="RuleIDlive_search()" ng-blur="Search_RuleId()" ng-model="SearchRuleID" typeahead="RuleId for RuleId in RuleIds | filter:$viewValue ">
+                                </div>
+                              <!--   <div class="col-md-3 col-sm-6">
+                                    <label> Search by Use Case Name</label>
+                                    <input type="text" class="form-control" placeholder="Search by  Name" ng-change="RuleNamelive_search()" ng-blur="Search_RuleName()" ng-model="SearchRuleName" typeahead="RuleName for RuleName in RuleNames | filter:$viewValue">
+                                </div> -->
+                                <div class="col-md-3 col-sm-6">
+                                    <label> Use Case ID <span class="red"> *</span></label>
+                                    <input type="text" class="form-control" placeholder="Use Case ID" disabled ng-model="crtUsercaseId" required>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label> Use Case Name <span class="red"> *</span></label>
+                                    <input type="text" class="form-control" placeholder="Use Case Name" disabled ng-model="crtUsercaseName" required>
+                                </div>
+                            </div>
+                                <hr>
+                        </div>
+                        <hr>
+                        <div class="margintp1 col-md-12 col-sm-12 ">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 form-group" ng-class="{ 'has-error': CreateRuleFrom.crtRuleID.$error.required &&  CreateRuleFrom.crtRuleID.$dirty }">
+                                    <label> Rule ID <span class="red"> *</span></label>
+                                    <input type="text" class="form-control" maxlength="20" placeholder="Rule ID" name="crtRuleID" ng-model="crtRuleID" required>
+                                    <span ng-show="CreateRuleFrom.crtRuleID.$dirty && CreateRuleFrom.crtRuleID.$error.required" class="help-block">This field is required</span>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <label> Rule Name <span class="red"> *</span></label>
+                                    <input type="text" class="form-control" maxlength="100" placeholder="Rule Name" ng-model="crtRuleName" required>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <label> Out of Box </label><br>
+								<select class="form-control valselect" ng-model="formcontrolYN">
+								<!--  ng-change="yngetDetailscr(formcontrolYN)" -->
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="margintp1">
+                                    <div class="col-md-12 col-sm-6">
+                                        <label> Rule Description </label>
+                                        <textarea rows="3" cols="30" maxlength="2000" class="form-control" placeholder="Rule Description" ng-model="crtRuleDsecpt"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="tabs">
+                    <div class="tabsreg">
+                        <div class="margintp1 col-md-12">
+                            <div class="row">
+                                <div class="tabheader">
+                                    <li class="tabshead"><a herf="" ng-class="licreateruledetails" ng-click="lidetails()"> Rule Details</a></li>
+                                    <li class="tabshead"><a herf="" ng-class="licreateruleinput" ng-click="liinput()"> Inputs</a></li>
+                                    <!--<li class="tabshead"><a herf="" ng-class="licreateruleinputdata" ng-click="liinputdata()"> Input Data Elements</a></li>
+                                <li class="tabshead"><a herf="" ng-class="licreaterulelog" ng-click="lilog()"> Log Resource</a></li>-->
+                                    <li class="tabshead"><a herf="" ng-class="licreateruleoutput" ng-click="lioutput()"> Output</a></li>
+                                    <li class="tabshead"><a herf="" ng-class="licreaterulethd" ng-click="lithd()"> Threat Model</a></li>
+                                   <!--  <li class="tabshead"><a herf="" ng-class="licreateruleresponse" ng-click="liresponse()"> Response</a></li> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="ruledetails" ng-show="ruledetails">
+                            <div class="row margintp1">
+                                <div class=" col-md-4">
+                                    <label>Pseudo Code </label>
+                                    <textarea class="form-control" placeholder="Pseudo Code" maxlength="2000" ng-model="crtRulepesducode"></textarea>
+                                </div>
+                                <div class=" col-md-4">
+                                    <label>Saved Search logic </label>
+                                    <textarea class="form-control" placeholder="Saved Search logic" maxlength="2000" ng-model="crtRuleSaveSrchlogic"></textarea>
+                                </div>
+                                <div class=" col-md-4">
+                                    <label>Building Blocks </label>
+                                    <textarea class="form-control" placeholder="Building Blocks" maxlength="5000" ng-model="crtRuleBuildlogic"></textarea>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row margintp1">
+                                <div class=" col-md-4">
+                                    <label>Reference Set </label>
+                                    <textarea class="form-control" placeholder="Reference Set" maxlength="2000" ng-model="crtRuleRefSet"></textarea>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="margintp1 col-md-12">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <!--<button type="reset" class="btn btn-none tabsbtn"> Clear</button>-->
+                                    <button class="btn btn-primary tabsbtn" ng-click="liinput()"> Next </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="ruleinput" ng-show="ruleinput">
+                            <div class="row margintp1">
+                                <div class="col-md-4">
+                                    <label>Transactional Data </label>
+                                    <select multiple ng-change="chckfunction()" class="form-control" ng-model="crtRuleTrsn">
+                                        <option ng-repeat="transdata in transdatas  | orderBy:'Name'" value="{{transdata.SurrId}}">
+                                            {{transdata.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Refrential Data </label>
+                                    <select multiple class="form-control" ng-model="crtRuleRefr">
+                                        <option ng-repeat="Referdata in Referdatas  | orderBy:'Name'" value="{{Referdata.SurrId}}">
+                                            {{Referdata.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Event Name/ Categroy </label>
+                                    <select multiple class="form-control" ng-model="crtRuleEventName">
+                                        <option ng-repeat="eventcatdata in eventcatdatas  | orderBy:'Name'" value="{{eventcatdata.SurrId}}">
+                                            {{eventcatdata.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row margintp1">
+                                <div class="col-md-4">
+                                    <label>Event Attributes </label>
+                                    <select multiple class="form-control" ng-model="crtRuleEventAttribute" required>
+                                        <option ng-repeat="eventAttr in dataeventAttr  | orderBy:'Name'" value="{{eventAttr.SurrId}}">
+                                            {{eventAttr.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Log Source </label>
+                                    <select multiple class="form-control" ng-model="crtRuleLogSource">
+                                        <option ng-repeat="log in LogSource  | orderBy:'Name'" value="{{log.SurrId}}">
+                                            {{log.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="margintp1 col-md-12">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <!--<button type="reset" class="btn btn-none tabsbtn"> Clear</button>-->
+                                    <button class="btn btn-primary tabsbtn" ng-click="lioutput()"> Next </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="ruleinput" ng-show="ruleoutput">
+                            <div class="row margintp1">
+                                <div class=" col-md-4">
+                                    <label>DashBoard</label>
+                                    <select class="form-control" ng-model="crtRuleDashBoard">
+                                        <option ng-repeat="dash in dashboarddatas | orderBy:'Name'" value="{{dash.SurrId}}">
+                                            {{dash.Name}}
+                                        </option>
+                                    </select>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Alert </label>
+                                    <select class="form-control" ng-model="crtRuleAlert">
+                                        <option ng-repeat="alert in alertdatas  | orderBy:'Name'" value="{{alert.SurrId}}">
+                                            {{alert.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class=" col-md-4">
+                                    <label>Reference Set </label>
+                                    <select class="form-control" ng-model="crtReferSet">
+                                        <option ng-repeat="refeset in refesetdatas  | orderBy:'Name'" value="{{refeset.SurrId}}">
+                                            {{refeset.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row margintp1">
+                                <div class=" col-md-4">
+                                    <label>Report </label>
+                                    <select multiple class="form-control" ng-model="crtRuleReport">
+                                        <option ng-repeat="reports in Reportdatas  | orderBy:'Name'" value="{{reports.SurrId}}">
+                                            {{reports.Name}} - {{reports.Value}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="margintp1 col-md-12">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <!--<button class="btn btn-none tabsbtn" type="reset"> Clear</button>-->
+                                    <button class="btn btn-primary tabsbtn" ng-click="lithd()"> Next </button>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="clearfix"></div>
+                        <div class="rulethd" ng-show="rulethd">
+                            <div class="row margintp1">
+                                <div class="col-md-3 col-sm-6">
+                                    <label> CAPEC Category </label>
+                                    <select class="form-control" ng-model="UsecasecapecCat" ng-change="thdCape_extch()" ng-blur="thdCape_ch()">
+                                        <option ng-selected="UsecasecapecCat == thdCapdata.SurrId" ng-repeat="thdCapdata in thdCapdatas  | orderBy:'Name'" value="{{thdCapdata.SurrId}}">
+                                            {{thdCapdata.Name}} {{thdCapdata.ID}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label> Meta Attack </label>
+                                    <select class="form-control" ng-model="UsecaseMetaAtt" ng-change="thdMeta_extch()" ng-blur="thdMeta_ch()">
+                                        <option ng-selected="UsecaseMetaAtt == thdMetadata.SurrId" ng-repeat="thdMetadata in thdMetadatas | orderBy:'Name'" value="{{thdMetadata.SurrId}}">
+                                            {{thdMetadata.Name}} {{thdMetadata.ID}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label> Standard Attack </label>
+                                    <select class="form-control" ng-model="UsecaseStrdAtt" ng-change="thdStrd_extch()" ng-blur="thdStrd_ch()">
+                                        <option ng-selected="UsecaseStrdAtt == thdStrddata.SurrId" ng-repeat="thdStrddata in thdStrddatas | orderBy:'Name'" value="{{thdStrddata.SurrId}}">
+                                            {{thdStrddata.Name}} {{thdStrddata.ID}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label> </label>
+                                    <button class="tabsbtn btn btn-primary" ng-click="thdUsecase_add()"> Add</button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <table class="table table-striped tableusecase">
+                                        <thead>
+                                            <th> CAPEC Category</th>
+                                            <th>Meta Attack</th>
+                                            <th>Standard Attack</th>
+                                            <th></th>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="ThdCrt in ThdCrttables">
+                                                <td>{{ThdCrt.Thdcat}} </td>
+                                                <td>{{ThdCrt.ThdPub}}</td>
+                                                <td>{{ThdCrt.ThdCrtl}}</td>
+                                                <td><i class="glyphicon glyphicon-trash mousePt" ng-click="Thdtableremove(ThdCrttables, $index)"></i> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="clearfix"></div>
+                            <div class="margintp1 col-md-12">
+                                <div class="col-md-offset-4 col-md-4">
+                                	 <button type="reset" class="btn btn-none tabsbtn" id="reSet"> Clear</button>
+                                    <!--ng-disabled="CreateRuleFrom.$invalid"-->
+                                    <button type="submit" class="btn btn-primary tabsbtn" ng-click="crtRuleSubmit()"> Submit </button>
+                                  <!--   <button class="btn btn-primary tabsbtn" ng-click="liresponse()"> Next </button> -->
+                                </div>
+                            </div>
+                        </div>
+                
+<!--                         <div class="clearfix"></div>
+                        <div class="ruleinput" ng-show="ruleresponse">
+                            <div class="row margintp1">
+                                <div class=" col-md-4">
+                                    <label>Response </label>
+                                    <textarea class="form-control" maxlength="5000" ng-model="crtRuleResponse"></textarea>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="margintp1 col-md-12">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <button type="reset" class="btn btn-none tabsbtn" id="reSet"> Clear</button>
+                                    ng-disabled="CreateRuleFrom.$invalid"
+                                    <button type="submit" class="btn btn-primary tabsbtn" ng-click="crtRuleSubmit()"> Submit </button>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

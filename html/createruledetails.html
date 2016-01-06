@@ -1,0 +1,166 @@
+<div class="createnewpage pagebg">
+    <div class="row">
+        <div class="sub_menu">
+            <ul>
+                <li class="active btn btn-sub-menu"> <a ui-sref="home.createusecase">Create New</a></li>
+                <li class="btn btn-sub-menu"> <a ui-sref="home.createrule">view</a></li>
+                <li class="btn btn-sub-menu"> <a ui-sref="home.createruledetails">Rule</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row zeroSpace">
+        <div class="createnew-head">
+            <div class="col-md-6 col-sm-6">
+                <h2 class="title-head"> Create Rule </h2>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <span class="sub_title-head  pull-right"> Use Case ID, Use Case Name </span>
+            </div>
+
+        </div>
+        <hr>
+        <div class="createnew-head"><div class="col-md-6"><span>Rule Id and Rule name goes here</span></div></div>
+    </div>
+    <div class="row zeroSpace">
+        <div class="tabs">
+            <div class="tabsreg">
+                <div class="margintp1 col-md-12">
+                    <div class="row">
+                        <div class="tabheader">
+                            <li class="tabshead"><a herf="" ng-class="licreateruledetails" ng-click="lidetails()"> Rule Details</a></li>
+                            <li class="tabshead"><a herf="" ng-class="licreateruleinput" ng-click="liinput()"> Inputs</a></li>
+                            <li class="tabshead"><a herf="" ng-class="licreateruleinputdata" ng-click="liinputdata()"> Input Data Elements</a></li>
+                            <li class="tabshead"><a herf="" ng-class="licreaterulelog" ng-click="lilog()"> Log Resource</a></li>
+                            <li class="tabshead"><a herf="" ng-class="licreateruleoutput" ng-click="lioutput()"> Output</a></li>
+                           <!--  <li class="tabshead"><a herf="" ng-class="licreateruleresponse" ng-click="liresponse()"> Response</a></li> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="ruledetails" ng-show="ruledetails">
+                <div class="row margintp1">
+                    <div class=" col-md-4">
+                        <label>Pseudo code</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    <div class=" col-md-4">
+                        <label>Rule Test logic</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    <div class=" col-md-4">
+                        <label>Report logic</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row margintp1">
+                    <div class=" col-md-4">
+                        <label>Saved Search logic</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    <div class=" col-md-4">
+                        <label>Building logic </label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    <div class=" col-md-4">
+                        <label>Reference Set Inc.</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="margintp1 col-md-12">
+                    <div class="col-md-offset-4 col-md-4">
+                        <button class="btn btn-none tabsbtn"> Clear</button>
+                        <button class="btn btn-primary tabsbtn" ng-click="createRule()"> Next </button>
+                    </div>
+                </div>
+            </div>
+                <div class="clearfix"></div>
+                <div class="ruleinput" ng-show="ruleinput">
+                <div class="row margintp1">
+                    <div class=" col-md-4">
+                        <label>Transactional Data</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    <div class=" col-md-4">
+                        <label>Refrential Data</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    <div class=" col-md-4">
+                        <label>Event Name/ Categroy</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row margintp1">
+                    <div class=" col-md-4">
+                        <label>Event Attributes</label>
+                        <select multiple class="form-control" ng-model="">
+                            <option selected> placeholder</option>
+                            <option value="0">dummy data</option>
+                        </select>
+                    </div>
+                    <div class=" col-md-4">
+                        <label>Log Source</label>
+                        <select multiple class="form-control" ng-model="">
+                            <option selected> placeholder</option>
+                            <option value="0">dummy data</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="margintp1 col-md-12">
+                    <div class="col-md-offset-4 col-md-4">
+                        <button class="btn btn-none tabsbtn"> Clear</button>
+                        <button class="btn btn-primary tabsbtn" ng-click="liinputdata()"> Next </button>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+                <div class="ruleinput" ng-show="ruleinputdata">
+                <div class="row margintp1">
+                    <div class=" col-md-4">
+                        <label>Transactional Data</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    <div class=" col-md-4">
+                        <label>Refrential Data</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    <div class=" col-md-4">
+                        <label>Event Name/ Categroy</label>
+                        <textarea class="form-control" placeholder="Use Case Name"></textarea>
+                    </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row margintp1">
+                    <div class=" col-md-4">
+                        <label>Event Attributes</label>
+                        <select multiple class="form-control" ng-model="">
+                            <option selected> placeholder</option>
+                            <option value="0">dummy data</option>
+                        </select>
+                    </div>
+                    <div class=" col-md-4">
+                        <label>Log Source</label>
+                        <select multiple class="form-control" ng-model="">
+                            <option selected> placeholder</option>
+                            <option value="0">dummy data</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="margintp1 col-md-12">
+                    <div class="col-md-offset-4 col-md-4">
+                        <button class="btn btn-none tabsbtn"> Clear</button>
+                        <button class="btn btn-primary tabsbtn" ng-click="liinputdata()"> Next </button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

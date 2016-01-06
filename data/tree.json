@@ -1,0 +1,135 @@
+[
+  {
+    "Type": "Select all",
+    "SurrId": 1,
+    "name": "Selectall",
+    "checked": false,
+    "show": true,
+    "children": [
+      {
+        "Type": "CyberSecFunc",
+        "SurrId": 1,
+        "name": "Reg Category",
+        "checked": false,
+        "show": true,
+        "children": [
+          {
+            "Type": "UseCaseCat",
+            "SurrId": 3,
+            "name": "NIST",
+            "checked": false,
+            "show": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "Type": "CyberSecFunc",
+        "SurrId": 2,
+        "name": "Threat Model",
+        "checked": false,
+        "show": true,
+        "children": [
+          {
+            "Type": "UseCaseCat",
+            "SurrId": 1,
+            "name": "Threat Model1",
+            "checked": false,
+            "show": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "Type": "CyberSecFunc",
+        "SurrId": 3,
+        "name": "Cyber Security",
+        "checked": false,
+        "show": true,
+        "children": [
+          {
+            "Type": "UseCaseCat",
+            "SurrId": 5,
+            "name": "UseCase Category",
+            "checked": false,
+            "show": true
+          },
+          {
+            "Type": "UseCaseCat",
+            "SurrId": 4,
+            "name": "UseCase Category1",
+            "checked": false,
+            "show": true,
+            "children": [
+              {
+                "Type": "UseCaseSubCat",
+                "SurrId": 1,
+                "name": "UseCase SubCategory",
+                "checked": false,
+                "show": true,
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Type": "RegCat",
+        "SurrId": 1,
+        "name": "UseCase",
+        "checked": false,
+        "show": true,
+        "children": [
+          {
+            "Type": "RegPub",
+            "SurrId": 1,
+            "name": "UseCase1",
+            "checked": false,
+            "show": true,
+            "children": []
+          }
+        ]
+      },
+      {
+        "Type": "RegCat",
+        "SurrId": 2,
+        "name": "UseCaseRule",
+        "checked": false,
+        "show": true,
+        "children": [
+          {
+            "Type": "RegPub",
+            "SurrId": 2,
+            "name": "UseCaseRule1",
+            "checked": false,
+            "show": true
+          }
+        ]
+      },
+      {
+        "Type": "RegCat",
+        "SurrId": 3,
+        "name": "Essential Prcatice",
+        "checked": false,
+        "show": true,
+        "children": []
+      },
+      {
+        "Type": "RegCat",
+        "SurrId": 4,
+        "name": "Log Resource",
+        "checked": false,
+        "show": true,
+        "children": []
+      },
+      {
+        "Type": "RegCat",
+        "SurrId": 5,
+        "name": "Industry",
+        "checked": false,
+        "show": true,
+        "children": []
+      }
+    ]
+  }
+]

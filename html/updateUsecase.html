@@ -1,0 +1,132 @@
+<div class="createnewpage pagebg" ng-controller="UpdateusecaseController">
+    <div class="container-fluid">
+        <div class="row">
+            <div ng-show="pagemain.main">
+                <div class="sub_menu">
+                    <ul>
+                        <li class="active btn btn-sub-menu"> <a ng-click="pageUsecase()">Use Cases</a></li>
+                        <li class="btn btn-sub-menu"> <a ng-click="pageRule()">Rule</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-show="pagemain.usecase">
+                <div class="sub_menu">
+                    <ul>
+                        <li class="active btn btn-sub-menu"> <a ui-sref="home.createusecase">Create Use Cases</a></li>
+                        <li class="btn btn-sub-menu"> <a ng-click="SamePageReload()" ui-sref="home.updateUsecase">Update Use Cases</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-show="pagemain.rule">
+                <div class="sub_menu">
+                    <ul>
+                        <li class="btn btn-sub-menu"> <a ui-sref="home.createrule">Create Rule</a></li>
+                        <li class="btn btn-sub-menu"> <a ui-sref="home.updateRule">Update Rule</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="createnew-head">
+                <div class="col-md-6 col-sm-6">
+                    <h2 class="title-head"> Update Use Case</h2>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div ng-show='updateUsecase.SearchPage'>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-3 col-sm-3">
+                    <label style="font-size:16px;">Search By Use Case ID </label>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <input type="text" class="form-control" required placeholder="Use Case ID" ng-model="UpdateusecaseID">
+                </div>
+                <div class="col-md-3 col-sm-2">
+                    <button ng-click="Search_UpdateUsecase()" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-search" style="font-size:13px"></span> Search Use Case ID</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show='updateUsecase.updatePage'>
+        <div class="container">
+            <div class="row">
+                <div class="tabs">
+                    <div class="tabsreg">
+                        <form name="UpdateUsecaseFrom" novalidate autocomplete="off">
+                            <div class="margintp1 col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4 col-sm-6">
+                                            <label> Framework Function <span class="red"> *</span> </label>
+                                            <select class="form-control" required ng-model="frameWork" ng-change="frameWorkUsecase()">
+                                                <option ng-selected="frameWork == Usecaseframeval.SurrId" ng-repeat="Usecaseframeval in UsecaseFramework | orderBy:'Name'" value="{{Usecaseframeval.SurrId}}">
+                                                    {{Usecaseframeval.Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6">
+                                            <label> Use Case Category <span class="red"> *</span></label>
+                                            <select class="form-control" required ng-model="useCaseCat" ng-change="UsecaseCatgChange()">
+                                                <option ng-selected="useCaseCat == UsecaseCatg.SurrId" ng-repeat="UsecaseCatg in UsecaseCatgs | orderBy:'Name'" value="{{UsecaseCatg.SurrId}}">
+                                                    {{UsecaseCatg.Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6">
+                                            <label> Use Case SubCategory <span class="red"> *</span></label>
+                                            <select class="form-control" required ng-model="useCaseSubcat">
+                                                <option ng-selected="useCaseSubcat == useCaseSubcatdata.SurrId" ng-repeat="useCaseSubcatdata in useCaseSubcatdatas | orderBy:'Name'" value="{{useCaseSubcatdata.SurrId}}">
+                                                    {{useCaseSubcatdata.Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="margintp2">
+                                            <div class="col-md-4 col-sm-6">
+                                                <label> Use Case ID <span class="red"> *</span></label>
+                                                <input type="text" class="form-control" required disabled placeholder="Use Case ID" ng-model="usecaseID">
+                                            </div>
+                                            <div class="col-md-4 col-sm-6">
+                                                <label> Use Case Name <span class="red"> *</span></label>
+                                                <input type="text" class="form-control" required placeholder="Use Case Name" ng-model="usecaseName">
+                                            </div>
+                                            <div class="col-md-4 col-sm-6">
+                                                <label> Use Case Description <span class="red"> *</span></label>
+                                                <textarea class="form-control" maxlength="1000" ng-model="usecaseDescrip">
+                                                </textarea>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="margintp1">
+                                                    <div class="col-md-3">
+                                                        <label>Industry <span class="red"> *</span></label>
+                                                        <select multiple class="form-control" ng-options="industrydata.SurrId as industrydata.Name for industrydata in industrydatas | orderBy:'Name'" required ng-model="UsecaseIntry">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="margintp1 col-md-12">
+                                    <div class="col-md-offset-4 col-md-4">
+                                        <button class="btn btn-none tabsbtn" ng-click="reSet()" id="reSet"> Clear</button>
+                                        <button type="submit" ng-click="goTo()" class="btn btn-primary tabsbtn"> Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="row zeroSpace" ng-controller="HomeController">
+    <div class="gifanimation" ng-show="loadinganimation">
+        <img src="img/Preloader_2.gif">
+    </div>
+    <div class="heading">
+        <div class="col-md-6 col-sm-6 ">
+            <img alt="logo" src="img/ibmlogoheader.png" style="width: 100px;height: auto;"><span class="usecaselogo"><img alt="logo" src="img/logotophdr.png"></span>
+        </div>
+        <div class="col-md-6 col-sm-6 text-right">
+            <h4 class="User-name"><img src="img/loginicon.png">Welcome  {{username}} | <a href="#/login" class="" ng-click="localStorageclear()">Logout</a></h4>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="mainmenu">
+        <div class="container">
+            <div class="row userspeMenustyle">
+                <div class="col-md-12 col-sm-12 text-center">
+                <ul class="mainlinks">
+                    <li ng-show = "useCaseMaintain"><a class="forallnotsear forallnotFedd" ui-sref=".createusecase"><span class="glyphicon glyphicon-list-alt" style="float:left;font-size:20px;padding-right:5px"></span><div style="float:left">Use Case Maintenance</div></a> </li>
+                    <li ng-show = "userAccountManagement"><a class="forallnotsear forallnotFedd" ui-sref=".uamanagement"  ><span class="glyphicon glyphicon-user" style="float:left;font-size:20px;padding-right:5px"></span><div style="float:left">User Account Management</div></a></li>
+                    <!-- <li ng-show = "ucrlPackage"><a href="" ><span class="glyphicon glyphicon-folder-open" style="float:left;font-size:20px;padding-right:10px"></span><div style="float:left">UCSRL Package</div></a></li> -->
+                    <!-- <li ng-show = "alertMenu"><a href="" ><span class="glyphicon glyphicon-bell" style="float:left;font-size:20px;padding-right:10px"></span><div style="float:left">Alert</div></a></li> -->
+                    <li ng-show = "feedback"><a ui-sref=".feedback" class="forallnotsear feedbackmenu"><span class="icon-usermanage"></span> Feedback </a></li> 
+                    <li ng-show = "searchMenu"><a ui-sref=".search"  class="forallnotFedd searchlibrarymenuI activemainlinks"><span class="icon-search"></span>Search Library</a></li>
+                </ul>                
+                </div>
+                <script>
+                    angular.element("ul.mainlinks li a").click(function() {
+                        angular.element("ul.mainlinks li a").removeClass("activemainlinks");
+                        angular.element(this).addClass(" activemainlinks");
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contentHome" ui-view></div>
+
+<div class="row zeroSpace" id="footer">
+    <div class="col-md-6 col-sm-10">
+        <ul class="foot-nav footliststyling">
+            <li><a href="">Terms of use</a> 
+            </li>
+            <li><a href="">Business conduct Guidelines</a> 
+            </li>
+            <li><a href="">Feedback</a> 
+            </li>
+            <li><a href="">Accessibility </a> 
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6 col-sm-2 footer-logo text-right">
+        <img alt="logo" src="img/ibmlogoheader.png">
+    </div>
+</div>

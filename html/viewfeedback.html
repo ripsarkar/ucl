@@ -1,0 +1,160 @@
+<div class="createnewpage pagebg" ng-controller="viewfeedbackController">
+    <div class="container-fluid">
+        <div class="row">
+            <div>
+                <div class="sub_menu">
+                    <ul>
+                        <li class="active btn btn-sub-menu"> <a ng-click="goTofeedback()">Edit</a></li>
+                        <li class="btn btn-sub-menu"> <a ng-click="goToviewfeedback()">View</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="createnew-head" style="padding:0px;">
+                <div class="col-md-3 col-sm-3">
+                    <h2 class="title-head"> View Feedback </h2>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                </div>
+            </div>
+        </div>
+        <hr style="margin-top:0px">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div ng-show="all_org">
+                    <span class="title-head"> Organization : </span> 
+                    <select ng-model="orgName" ng-init="orgName = vfbselPckg[0].id" style="height: 30px; width: 300px; margin-top: 20px;" style="height: 30px; width: 300px; margin-top: 20px;" ng-options="vfbselPckg.id as vfbselPckg.name for vfbselPckg in vfbselPckg | orderBy:'name'">
+                        <!--<option ng-repeat="vfdselect in vfbselPckg" value="{{vfdselect.id}}">
+                            {{vfdselect.name}}
+                        </option>-->
+                    </select>
+                    <button class="btn btn-primary" ng-click="orgcmpname()">Search</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="pull-right" style="margin: 20px 0px;">
+                    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+                    {{currentPage+1}}/{{numberOfPages()}}
+                    <button ng-disabled="currentPage >= vfbPckg.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+                </div>
+                <div class="clear"></div>
+                <div class="pull-right">
+                    <h3 class="title-head pull-right forclearhover" style="margin-bottom: 2px;" style="margin-top: 10px;">
+                        <a ng-href="{{viewExceldownload}}" id="exporttoexcel"  target="_blank" ></a>
+                        <span ng-click="clickOnExport()" class="icon-export" ></span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin:0px;">
+            <table class="table table-striped searchtablerow fixed-header" style="max-height: 350px; display: block; overflow-y: scroll;">
+                <thead>
+                    <tr class="tableheader">
+                        <th ng-show="all_org">Organization Name</th>
+                        <th>Use Case#</th>
+                        <th>Use Case Name</th>
+                        <th>Use Case Rule ID</th>
+                        <th>Use Case Rule Name</th>
+                        <th>Out of Box</th>
+                        <th>Organization Rule ID</th>
+                        <th>Organization Rule Name</th>
+                        <th>Implementation%</th>
+                        <th>Update date time</th>
+                        <th>UserName</th>
+                        <th width="200px">Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr ng-repeat="viewfdb in vfbPckg | startFrom:currentPage*pageSize | limitTo:pageSize">
+                        <td ng-show="all_org" align="left">{{viewfdb.company_name}}</td>
+                        <td align="left">{{viewfdb.usecase_id}}</td>
+                        <td align="left">{{viewfdb.usecase_name}}</td>
+                        <td align="left">{{viewfdb.usecase_rule_id}}</td>
+                        <td align="left">{{viewfdb.usecase_rule_name}}</td>
+                        <td align="left">{{viewfdb.oob_flag}}</td>
+                        <td align="left">{{viewfdb.client_rule_id}}</td>
+                        <td align="left">{{viewfdb.client_rule_name}}</td>
+                        <td align="left">{{viewfdb.rule_impl_percent}}</td>
+                        <td align="left">{{viewfdb.rule_impl_date_time}}</td>
+                        <td align="left">{{viewfdb.username}}</td>
+                        <td align="left">{{viewfdb.client_rule_comment}}</td>
+                        <!--<td> <a href="javascript:void(0);" ng-click="open();" class="pull-right"></a></td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        
+        <div class="hidden" id="export_feedback" style="margin:0px;">
+            <table >
+                <thead>
+                    <tr >
+                        <th ng-show="all_org">Organization Name</th>
+                        <th>Use Case#</th>
+                        <th>Use Case Name</th>
+                        <th>Use Case Rule ID</th>
+                        <th>Use Case Rule Name</th>
+                        <th>Out of Box</th>
+                        <th>Organization Rule ID</th>
+                        <th>Organization Rule Name</th>
+                        <th>Implementation%</th>
+                        <th>UserName</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--| startFrom:currentPage*pageSize | limitTo:pageSize-->
+                    <tr ng-repeat="viewfdb in vfbPckg">
+                        <td ng-show="all_org" align="left">{{viewfdb.company_name}}</td>
+                        <td align="left">{{viewfdb.usecase_id}}</td>
+                        <td align="left">{{viewfdb.usecase_name}}</td>
+                        <td align="left">{{viewfdb.usecase_rule_id}}</td>
+                        <td align="left">{{viewfdb.usecase_rule_name}}</td>
+                        <td align="left">{{viewfdb.oob_flag}}</td>
+                        <td align="left">{{viewfdb.client_rule_id}}</td>
+                        <td align="left">{{viewfdb.client_rule_name}}</td>
+                        <td align="left">{{viewfdb.rule_impl_percent}}</td>
+                        <td align="left">{{viewfdb.username}}</td>
+                        <td align="left">{{viewfdb.client_rule_comment}}</td>
+                        <!--<td> <a href="javascript:void(0);" ng-click="open();" class="pull-right"></a></td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <div class="pull-right" style="margin: 20px 0px;">
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+            {{currentPage+1}}/{{numberOfPages()}}
+            <button ng-disabled="currentPage >= vfbPckg.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+        </div>
+        <div class="clear"></div>
+        <div class="pull-right">
+            <h3 class="title-head pull-right forclearhover" style="margin-bottom: 2px;" style="margin-top: 10px;">
+                <a ng-href="{{viewExceldownload}}" id="exporttoexcel"  target="_blank" ></a>
+                <span ng-click="clickOnExport()" class="icon-export" ></span>
+            </h3>
+        </div>
+    </div>
+</div>
+
+<style>
+    .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
+    }
+    .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
+    }
+</style>

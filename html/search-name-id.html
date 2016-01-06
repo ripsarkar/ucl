@@ -1,0 +1,157 @@
+
+<div class="col-md-9 col-sm-8" ng-controller="searchNameIdController">
+
+
+	<!-- search by name/id -->
+
+	<div class="input-group pull-left col-md-4">
+		<span class="input-group-addon" id="basic-addon1"
+			style="color: #fff; background-color: #05A8E6">Object Name</span> <input
+			class="form-control namesearchclass" ng-model="namesearch"
+			placeholder="Object Name" aria-describedby="basic-addon1" type="text"
+			ng-keydown="$event.which === 13 && clickme()">
+	</div>
+	<span class="pull-left col-md-2" style="text-align: center">---or---</span>
+	<div class="input-group pull-left col-md-4">
+		<span class="input-group-addon" id="basic-addon1"
+			style="color: #fff; background-color: #05A8E6" ng-model="usecaseID">Object
+			ID</span> <input class="form-control idsearchclass" ng-model="idsearch"
+			placeholder="Object ID" aria-describedby="basic-addon1" type="text"
+			ng-keydown="$event.which === 13 && clickme()">
+	</div>
+
+	<div>
+		<button type="button"
+			class="btn btn-default pull-right ucsearchbutton"
+			ng-click="clickme()">Search</button>
+	</div>
+	<!-- 			<div class="gifanimation" ng-show="loadinganimation"><img src="img/Preloader_2.gif"></div>
+ -->
+	<div class="clearfix"></div>
+
+	<!-- search by name/id -->
+
+	<div ng-show="errorrelationsearch" class="">
+		<div class="alert alert-danger" role="alert">{{relationsearchbottom}}</div>
+	</div>
+	<h4 class="topborder">Result</h4>
+	<div class="panel panel-default tablecontrol">
+		<div>
+			<table class="searchtable searchname">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Use Case</th>
+						<th>Use Case Description</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="usec in usercaseall" class="usecaseTable"
+						ng-click="uscaseclick(usec)">
+						<td>{{usec.usecase_id}}</td>
+						<td>{{usec.usecase_name}}</td>
+						<td>{{usec.usecase_desc}}</td>
+					</tr>
+					
+				</tbody>
+
+
+			</table>
+	<div ng-model="withNoData" class="pleaseprovide nosearchFnaly" ng-show="pleaseprovide">{{nosearch}}</div>
+		</div>
+		<!-- <div ng-show="!showResult">
+			<table class="searchtable searchname">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Use Case</th>
+						<th>Use Case Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr align="middle">
+						<td colspan="7">{{nosearch}}</td>
+					</tr>
+				</tbody>
+
+
+			</table>
+		</div> -->
+	</div>
+	<div class="uitabs">
+		<tabset> <tab ng-repeat="tab in tabs" heading="{{tab.title}}"
+			active="tab.active" disable="tab.disabled"> {{tab.content}} </tab> </tabset>
+	</div>
+
+
+
+
+	<!-- relationship table -->
+	<div ng-show="rulerelationtable">
+		<h4>
+			<span class="relacategoryBold">Relationships </span><span
+				class="relacategoryN">for </span><span class="relacategoryBold">
+				Use Case # : </span> <span class="relacategoryN">{{useCaseNo}} </span><span
+				class="relacategoryBold"> Use Case Name : </span><span
+				class="relacategoryN">{{useCaseName}} </span>
+		</h4>
+		<div class="panel panel-default tablecontrol">
+			<div class="table table-striped relationshiptable">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th class="tableheaderLeft">Regulatory Category:</th>
+							<td><li class="relaList"><div class="tooltiphov"
+										id="regcatallinuc"></div></li></td>
+
+						</tr>
+						<!--<tr>
+					          <th class="tableheaderLeft">Threat category:</th>
+					            <td><li ng-repeat="tcatagory in threatcategory" class="tcataliststybull"><a data-toggle="tooltip" data-placement="left" title="{{tcatagory.desc}}" tooltip-placement="left"><strong>({{tcatagory.type}})</strong> {{tcatagory.name}}({{tcatagory.id}}) </a>
+                            </li></td>
+					        </tr>-->
+						<tr>
+							<th class="tableheaderLeft">Essential Practice:</th>
+							<td><li ng-repeat="essenprac in essentialpractice"
+								class="relaList"><a class="tooltiphov"
+									data-toggle="tooltip" data-placement="left"
+									title="{{essenprac.desc}}" tooltip-placement="left">{{essenprac.name}}{{$last
+										? '' : ', '}}</a></li></td>
+						</tr>
+						<tr>
+							<th class="tableheaderLeft">Industry:</th>
+							<td><li ng-repeat="indus in industry" class="relaList"><a
+									class="tooltiphov" data-toggle="tooltip" data-placement="left"
+									title="{{indus.desc}}" tooltip-placement="left">{{indus.name}}{{$last
+										? '' : ', '}}</a></li></td>
+						</tr>
+						<tr>
+							<th class="tableheaderLeft">Use Case Category:</th>
+							<td><li ng-repeat="uccata in uccategory" class="relaList"><a
+									class="tooltiphov" data-toggle="tooltip" data-placement="left"
+									title="{{uccata.desc}}" tooltip-placement="left">{{uccata.name}}</a>
+							</li></td>
+						</tr>
+						<tr>
+							<th class="tableheaderLeft">Use Case Sub Category:</th>
+							<td><li ng-repeat="ucsub in ucsubcategory" class="relaList"><a
+									class="tooltiphov" data-toggle="tooltip" data-placement="left"
+									title="{{ucsub.desc}}" tooltip-placement="left">{{ucsub.name}}</a>
+							</li></td>
+						</tr>
+						<tr>
+							<th class="tableheaderLeft">Use Case Rule:</th>
+							<td><li ng-repeat="ucrul in ucrules" class="relaList"><a
+									class="tooltiphov" data-toggle="tooltip" data-placement="left"
+									title="{{ucrul.desc}}" tooltip-placement="left">{{ucrul.name}}{{$last
+										? '' : ', '}}</a></li></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- /relationship table -->
+
+</div>

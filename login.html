@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Use Case Library Application</title>
+   
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link href="css/style.css" rel="stylesheet"> 
+  
+</head>
+<body>
+   <script src="lib/jquery-2.0.3.min.js"></script>
+    <script src="lib/jquery.1.11.13.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+  
+<div class="row zeroSpace">
+    <div class="heading">
+        <img alt="logo" src="img/ibmlogoheader.png" style="margin-top: 10px;">
+    </div>
+</div>
+<div id="content" ng-class="pagebg">
+    <div class="container">
+        <div class="row">
+            <div class="loginpage" >
+                <div class="row logP">
+                    <div class="logindesign">
+                        <div class="col-md-7 col-sm-12">
+                            <div class="login-logo">
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-8 log-reg">
+                            <h3 class="title-head"><img src="img/loginicon.png"> Login <span class="loginBold"> with IBM ID</span></h3>
+                           
+                            
+                              <div class="zeropad"><span>You will be redirected here after login with your IBM account</span></div>
+                               <div class="loginbtn">
+                                <a href="https://uclapistage.mybluemix.net/auth" class="btn btn-primary btnucsr">GO TO MY IBM</a>
+                                </div>
+                                <div>
+                        	    <div id="logErr" class="conditional_form_part alert alert-danger msg-alert ">You don't have valid UCL Account/Subscription</div>
+                               </div>
+                         <!--       <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                         <form autocomplete="off" name="form" ng-submit="vm.login()" role="form" enctype="multipart/form-data">
+                                <div class="form-group margin20" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                                    <label for="username">Username</label>
+                                    <input type="text" maxlength="50" name="username" id="username" class="form-control" placeholder="Username" ng-model="vm.username" required />
+                                    <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+                                </div>
+                                <div class="form-group margin20" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                                    <label for="password">Password</label>
+                                    <input type="password" maxlength="10" name="password" id="password" placeholder="Password" class="form-control" ng-model="vm.password" required />
+                                    <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                                </div>
+                                <div class="form-group margin20 login-footer">
+                                    <div class="col-sm-7 col-xs-7 zeropad">
+                                        <input type="checkbox"> Remember password</div>
+                                    <div class="col-sm-5 col-xs-5 zeropad"><a href="#/register">Forgot password</a> </div>
+                                    <div class="clearfix "></div>
+                                    <div class="col-sm-7 col-xs-7 zeropad"></div>
+                                    <div class="col-sm-5 col-xs-5 zeropad"><a href="#/register">Register</a></div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" ng-disabled="disabled" class="btn btn-primary btnucsr">LOG IN</button>
+                                    <img ng-if="disabled" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                               </div>
+                            </form>  -->
+                            
+            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row zeroSpace" id="footer">
+    <div class="col-md-6 col-sm-10">
+        <ul class="foot-nav">
+            <li><a href="">Terms of use</a> </li>
+            <li><a href="">Business conduct Guidelines</a> </li>
+            <li><a href="">Feedback</a> </li>
+            <li><a href="">Accessibility </a> </li>
+        </ul>
+    </div>
+    <div class="col-md-6 col-sm-2 footer-logo text-right">
+        <img alt="logo" src="img/ibmlogoheader.png">
+    </div>
+</div>
+</body>
+</html>

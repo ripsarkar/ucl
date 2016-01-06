@@ -1,0 +1,60 @@
+{
+  "RuleDescription": [
+    {
+      "Label": "Psuedo Code",
+      "Value": "Event code 4740 / 644 - A user account was locked "
+    },
+    {
+      "Label": "Test Logic",
+      "Value": null
+    },
+    {
+      "Label": "Report Logic",
+      "Value": null
+    },
+    {
+      "Label": "Save Search",
+      "Value": null
+    },
+    {
+      "Label": "Building Blocks",
+      "Value": "BB:CategoryDefinition:Authentication to Locked Account BB:IT Admin Events, BB:CategoryDefinition: Superuser Accounts"
+    },
+    {
+      "Label": "Reference Set Id",
+      "Value": "Terminated Users - AlphaNumeric (Ignore Case)"
+    }
+  ],
+  "LogSource": [
+    {
+      "Label": "Log Source",
+      "Value": "Microsoft Corporation"
+    }
+  ],
+  "Input": [
+    {
+      "Label": "Transactional Data",
+      "Value": "Authentication"
+    },
+    {
+      "Label": "Referential Data",
+      "Value": "Privileged User account"
+    }
+  ],
+  "Output": [
+    {
+      "Label": "Dashboard",
+      "Value": "Yes"
+    },
+    {
+      "Label": "Alert",
+      "Value": "Yes"
+    }
+  ],
+  "ResponseText": [
+    {
+      "Label": "Response Text",
+      "Value": "SIEM Analysts will"
+    }
+  ]
+}

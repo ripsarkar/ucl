@@ -1,0 +1,214 @@
+<div class="createnewpage pagebg" ng-controller="feedbackController">
+    <div class="container-fluid">
+        <div class="row">
+            <div>
+                <div class="sub_menu">
+                    <ul>
+                        <li class="active btn btn-sub-menu"> <a ng-click="goTofeedback()">Edit</a></li>
+                        <li class="btn btn-sub-menu"> <a ng-click="goToviewfeedback()">View</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="createnew-head">
+                <div class="col-md-6 col-sm-6">
+                    <h2 class="title-head"> Feedback </h2>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped searchtablerow fixed-header">
+             <tr class="tableheader">
+                    <th>Use Case#</th>
+                    <th>Use Case Name</th>
+                    <th>Use Case Rule ID</th>
+                    <th>Use Case Rule Name</th>
+                    <th>Out of Box</th>
+                    <th>Organization Rule ID</th>
+                    <th>Organization Rule Name</th>
+                    <th>Implementation%</th>
+                    <th>Feedback</th>
+               </tr>
+               
+				<!--<div class="searchtable">
+				<div class="usecaselibtable">
+					<table class="table table-striped searchtablerow fixed-header">-->
+                    <!--| startFrom:currentPage*pageSize | limitTo:pageSize-->
+                    <tr ng-repeat="pkgdata in rulesPckg | startFrom:currentPage*pageSize | limitTo:pageSize">
+                        <td  align="center">{{pkgdata.id_label}}</td>
+                        <td  align="center">{{pkgdata.name}}</td>
+                        <td  align="center">{{pkgdata.ruleid_label}}</td>
+                        <td  align="center">{{pkgdata.rulename}}</td>
+                        <td  align="center">{{pkgdata.ruleoob_flag}}</td>
+                        <td  align="center">{{pkgdata.ruleclient_rule_id}}</td>
+                        <td  align="center">{{pkgdata.ruleclient_rule_name}}</td>
+                        <td  align="center">{{pkgdata.rulerule_impl_percent}}</td>
+                        <td><a href="javascript:void(0);" ng-click="open();feedbackForm(pkgdata.ruleid, pkgdata.ruleid_label, pkgdata.rulename, $index)" data-toggle="modal" data-target="#myModal" class="pull-right"><span class="icon-feedback"></span></a>
+                        </td>
+                    </tr>
+                </table>
+            <!--</table>
+            </div>
+            </div>-->
+        </div>
+    </div>
+    <div class="container">
+        <div class="pull-right" style="margin-top: 15px;">
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+            {{currentPage+1}}/{{numberOfPages()}}
+            <button ng-disabled="currentPage >= rulesPckg.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+        </div>
+    </div>
+    <br>
+    <!--<input type="text" class="form-control" placeholder="update date" required ng-model="feedbackFrm.impuptdate">-->
+    <script type="text/ng-template" id="myModalContent.html">
+
+        <div class="modal-header" style="background:#008CCE">
+            <button type="button" class="close" ng-click="cancel()">&times;</button>
+            <h4 class="modal-title model_tit"><span class="title-head" style="color:#fff;">Input Feedback Details</span>
+                <span class="pull-right" style="margin-right: 10px; margin-top: -5px;color:#fff;">
+                    <span class="relacategoryBold">
+                        Use Case Rule ID: </span> <span class="relacategoryN">{{ fdlabel}} 
+                    </span>
+                    <span class="relacategoryBold"> Rule Name : </span>
+                    <span class="relacategoryN">{{fdname}} </span>
+                </span>
+            </h4>
+        </div>
+        <div class="modal-body">
+        <form name="feedbackFrm" ng-submit="feedbacksubmitchck(id)" novalidate autocomplete="off" role="form" style="margin: 10px 35px;">
+        <div class="row">
+            <div class="col-md-6">
+                <label> Implementation start date <span class="red"> *</span></label>
+                <p class="input-group">
+                    <input type="text" class="form-control" required ng-change="onchangeStartDate()"  datepicker-popup="yyyy-MM-dd" ng-model="startdt" datepicker-options="dateOptions" is-open="opened" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <label> Organization Rule ID </label>
+                    <input type="text" class="form-control" maxlength="50" placeholder="Organization Rule ID"  ng-model="feedbackFrm.orgruleid">
+            </div>
+        </div>
+        
+        <div class="row margintp1">
+            <div class="col-md-6 col-sm-6">
+                <label> Organization Rule Name</label>
+                <input type="text" class="form-control" maxlength="100" placeholder=" Organization Rule Name"  ng-model="feedbackFrm.orgrulename">
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <label>Update date time <span class="red"> *</span></label>
+                <p class="input-group">
+                    <input type="text" class="form-control" min-date="minDate" ng-change="onchangeUpdtDate()" required datepicker-popup="yyyy-MM-dd" ng-model="updatedt" is-open="Upopened" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="Upopen($event)"> <i class="glyphicon glyphicon-calendar"> </i></button>
+                    </span>
+                </p>
+            </div>
+        </div>
+        
+
+        <div class="row margintp1">
+            <div class="col-md-6 col-sm-6">
+                <label> Implementation% <span class="red"> *</span></label>
+                <select class="form-control" required ng-model="feedbackFrm.Implper">
+                    <option value="0">0 %</option>
+                    <option value="10">10 %</option>
+                    <option value="20">20 %</option>
+                    <option value="30">30 %</option>
+                    <option value="40">40 %</option>
+                    <option value="50">50 %</option>
+                    <option value="60">60 %</option>
+                    <option value="70">70 %</option>
+                    <option value="80">80 %</option>
+                    <option value="90">90 %</option>
+                    <option value="100">100 %</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <label> Comments</label>
+                <textarea type="text" class="form-control" maxlength="100" placeholder="comments" ng-model="feedbackFrm.fedbckcomments"></textarea>
+            </div>
+        </div>
+    </form>
+<hr style="margin:10px 0px;">
+    <h3>Feedback History</h3>
+    <hr style="margin:10px 0px;">
+    <div class="tablehg">
+        <table class="table table-striped">
+            <thead class="tableheader">
+                <th class="cursorbtn" style="width: 100px;" ng-click="changeSorting('name')">Organization Rule ID</th>
+                <th class="cursorbtn" ng-click="changeSorting('name')">Organization Rule Name</th>
+                <th class="cursorbtn" ng-click="changeSorting('name')">User Name </th>
+                <th class="cursorbtn" ng-click="changeSorting('data')">Update date time </th>
+                <th class="cursorbtn" ng-click="changeSorting('date')">Implementation% </th>
+                <th class="cursorbtn" ng-click="changeSorting('name')">Comments </th>
+                
+            </thead>
+            <tbody>
+                <tr ng-repeat="pcklist in feedbackFrm.pcklists| orderBy:sort.column:sort.descending">
+                    <td>{{pcklist.client_rule_id}}</td>
+                    <td>{{pcklist.client_rule_name}}</td>
+                    <td>{{pcklist.user_name}}</td>
+                    <td>{{pcklist.update_date_time}}</td>
+                    <td>{{pcklist.implementation_percent}}</td>
+                    <td>{{pcklist.client_comments}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="feedbacksubmit(id)">Submit</button>
+    <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+    </div>
+
+    </script>
+</div>
+
+<!-- code for package download -->
+<!--<hr>-->
+  <!--<h3>Packages Downloaded</h3>
+            <div class="tablehg">
+                <table class="table table-striped">
+                    <thead>
+                        <th class="cursorbtn" ng-click="changeSorting('name')">Package Name </th>
+                        <th class="cursorbtn" ng-click="changeSorting('date')">Export Date Time </th>
+                        <th>User Name</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pcklist in feedbackFrm.pcklists| orderBy:sort.column:sort.descending">
+                            <td>{{pcklist.rule_pkg_file_name}}</td>
+                            <td>{{pcklist.rule_pkg_export_date}}</td>
+                            <td>{{pcklist.user_name}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>-->
+
+
+<style>
+    .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
+    }
+    
+    .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
+    }
+</style>

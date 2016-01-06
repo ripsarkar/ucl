@@ -1,0 +1,83 @@
+<div class="createnewpage pagebg" ng-controller="viewUserController">
+	
+	<div class="row zeroSpace">
+		<div class="createnew-head">
+			<div class="col-md-6 col-sm-6">
+				<h2 class="title-head">View User</h2>
+			</div>
+
+			<div class="col-md-12">
+				<hr>
+				<h4 class="title-head">Search</h4>
+			</div>
+
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-3 col-sm-6">
+						<label>Organization Name</label> 
+						<select class="form-control" ng-model="selectedCompany" ng-options="company.name for company in companyList  track by company.id "
+							 ng-change=getDetails()>
+							<option style="display: none" value="">--Please Select--</option>
+							
+						</select>
+						
+					</div>
+					<div class="col-md-3 col-sm-6">
+					<label> Industry</label>
+						<p>{{industryName}}</p>
+						
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<label> Contract ID </label> 
+						<p>{{contractId}}</p>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						   <label> </label>
+                        <button class="tabsbtn btn btn-default ucsearchbutton" ng-click="clickme();"> Search</button>
+					</div>
+				</div>
+			
+			</div>
+
+
+		</div>
+	</div>
+	<div class="createnew-head">
+		<div class="col-md-12">
+			<hr>
+			<h4 class="title-head">Users List</h4>
+		</div>
+		<div class="panel panel-default tablecontrol">
+			<div class="searchtable uamtable">
+
+				<table class="table table-striped searchtablerow" fixed-header>
+					<tr class="tableheader">
+						<th>User Name</th>
+						<th>First Name</th>
+						<th>Middle Name</th>
+						<th>Last Name</th>
+						<th>Contact Number</th>
+						<th>Email Address</th>
+						<th>Role</th>
+						<th>Active</th>
+						<th colspan="2">Action</th>
+					</tr>
+					<tr ng-repeat="user in userList" class="usecaseTable">
+						<td ng-model="datashown">{{user.userName}}</td>
+						<td ng-model="datashown">{{user.firstName}}</td>
+						<td>{{user.middleName}}</td>
+						<td>{{user.lastName}}</td>
+						<td>{{user.contactNo}}</td>
+						<td>{{user.email}}</td>
+						<td>{{user.role}}</td>
+						<td class="activeprev">{{user.isActive}}</td>
+						 <td><a ng-click="onuamedituser(user.id)"><i class="glyphicon glyphicon-edit"></i></a></td>
+						 <td><i class="glyphicon glyphicon-trash"></i></td>
+					</tr>						
+
+				</table>
+			</div>
+
+		</div>
+	</div>
+</div>
